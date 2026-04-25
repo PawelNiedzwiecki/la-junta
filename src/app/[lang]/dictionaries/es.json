@@ -1,0 +1,177 @@
+{
+	"meta": {
+		"title": "La Junta · Experiencia Gastronómica · Londres",
+		"description": "La Junta — un pop-up chileno en Londres. Cada junta un viaje de ida y vuelta al hogar."
+	},
+	"navbar": {
+		"tagline": "Cada junta un viaje de ida y vuelta al hogar",
+		"links": {
+			"nosotros": "Nosotros",
+			"experiencia": "Experiencia",
+			"cocina": "Cocina",
+			"como_funciona": "¿Cómo funciona?",
+			"preguntas": "¿Preguntas?"
+		},
+		"cta": "Menú de Mayo",
+		"switchLabel": "EN"
+	},
+	"hero": {
+		"eyebrow": "Experiencia Gastronómica · Londres",
+		"subPre": "La mesa en Londres pero ",
+		"subEmphasis": "el alma en Chile",
+		"tagline": "Cada junta un viaje de ida y vuelta al hogar"
+	},
+	"historia": {
+		"eyebrow": "Nuestra Historia",
+		"heading": "Desde el campo de flores bordado…",
+		"caption": "Una mesa larga, vino y los nuestros · santiago / londres",
+		"p1": "Crecimos entre manteles bordados con flores, ollas que hervían despacio toda la tarde y conversaciones que se quedaban hasta que el último vaso de tinto se vaciaba. La mesa nunca fue solo mesa: era el lugar donde se contaban los días, se reían las penas y se recibía a quien llegara con hambre o con noticias.",
+		"p2": "Hoy, a miles de kilómetros, esa costumbre nos sigue. Trajimos a Londres el sabor del campo, la ciudad y la costa, y los pusimos sobre un mismo mantel para compartirlos con quien quiera sentarse con nosotros.",
+		"p3Emphasis": "…hasta nuestra londinense cocina.",
+		"p3Tail": " Cocinamos con paciencia, con memoria, y con eso que se hereda más que se aprende: el gesto de quien sirve un plato pensando en el que lo va a recibir."
+	},
+	"cocina": {
+		"eyebrow": "Nuestra Cocina",
+		"heading": "Hasta nuestra londinense cocina",
+		"caption": "Mesón rústico · cobre, pizarra y producto fresco",
+		"p1": "Recogemos sabores de la costa al campo: pescados que recuerdan al mar de Valparaíso, hierbas de huerta, choclo cocido despacio, ajíes que despiertan la mesa. Buscamos el ingrediente más humilde y le damos el lugar de honor.",
+		"p2": "Cada plato es una historia chica que cuenta una grande: la del país que se cocina entero en una olla. No queremos sorprender con artificios, queremos volver a ese sabor que uno reconoce sin saber por qué — el de la cocina de la abuela, el del puesto de la feria, el del fogón de domingo.",
+		"p3": "En lo simple está la belleza."
+	},
+	"comunidad": {
+		"eyebrow": "La Comunidad",
+		"heading": "Quiénes somos",
+		"p1": "Somos un par de chilenos en Londres a los que, después de varios inviernos largos, empezó a faltarnos algo difícil de explicar: esa costumbre nuestra de juntarnos a comer sin motivo, de poner otro plato si llegaba alguien, de quedarse hasta tarde conversando porque la sobremesa también es parte de la receta.",
+		"p2Pre": "Así nació ",
+		"p2Emphasis": "La Junta",
+		"p2Post": ": un supper club que se repite mes a mes, una mesa larga abierta a quien quiera sentarse, donde la comida chilena es la excusa y la comunidad, el plato principal."
+	},
+	"menuCard": {
+		"eyebrow": "Nuestro Menú",
+		"heading": "La junta del 9 de Mayo ya se está cocinando",
+		"time": "14:00",
+		"location": "cerca de London Bridge",
+		"reminder": "recuerda elegir tu opción de menú",
+		"descriptionLabel": "¿Qué nos trae este mes?",
+		"description": "un pisco sour de bienvenida, sabores de costa y campo en un mismo plato, choclo cocinado despacio sobre brasa, hierbas criollas, vino tinto y un postre que sabe a domingo. Una mesa larga, una tarde lenta, y todo el tiempo del mundo para conversar.",
+		"ctaPrimary": "Revisa nuestra mesa de Mayo",
+		"ctaSecondary": "¿Te apuntas?"
+	},
+	"ctaBanner": {
+		"cta": "Reserva tu lugar"
+	},
+	"proceso": {
+		"eyebrow": "El Proceso",
+		"heading": "Cómo funciona",
+		"steps": [
+			{
+				"title": "Regístrate",
+				"body": "Cada mes te llega el menú, la fecha y el lugar para que llegues preparado y con tiempo de organizar tu agenda."
+			},
+			{
+				"title": "Reserva tu lugar",
+				"body": "Asegura tu silla en la mesa: los cupos se llenan rápido. Recibirás un correo con la confirmación de tu reserva."
+			},
+			{
+				"title": "Confirmamos el menú",
+				"body": "Eliges entre 2 opciones de menú directo desde el correo de confirmación, y luego completas el pago."
+			}
+		],
+		"finalTitle": "Llega y disfruta",
+		"finalBody": "Llega con hambre, con ganas de compartir, y con tiempo para quedarte. Del resto nos encargamos nosotros."
+	},
+	"reserva": {
+		"eyebrow": "Únete",
+		"heading": "Reserva tu lugar para el 6 de Mayo",
+		"subtext": "Compártenos tu información para asistir a la próxima junta.",
+		"fields": {
+			"nombre": "Nombre",
+			"apellido": "Apellido",
+			"email": "Email",
+			"celular": "Celular",
+			"alergia": "¿Tienes alergia alimenticia?",
+			"extras": "¿Quieres registrar a más personas?",
+			"required": "(Requerido)"
+		},
+		"placeholders": {
+			"nombre": "Tu nombre",
+			"apellido": "Tu apellido",
+			"email": "tu@correo.com",
+			"celular": "7700 900 000"
+		},
+		"alergiaOptions": {
+			"placeholder": "Selecciona una opción",
+			"ninguna": "No, ninguna",
+			"gluten": "Gluten",
+			"lactosa": "Lactosa",
+			"frutosSecos": "Frutos secos",
+			"mariscos": "Mariscos",
+			"otra": "Otra (lo detallo en el correo)"
+		},
+		"extrasOptions": {
+			"solo": "No, solo yo",
+			"mas1": "Sí, 1 persona más",
+			"mas2": "Sí, 2 personas más",
+			"mas3": "Sí, 3 personas más",
+			"mas4": "Sí, 4 personas más"
+		},
+		"consent": {
+			"pre": "Acepto la ",
+			"linkLabel": "política de cancelación",
+			"post": " y autorizo a La Junta a contactarme con detalles del menú, fecha y ubicación del evento."
+		},
+		"submit": "Enviar información",
+		"successTitle": "¡Gracias!",
+		"successBody": "Hemos recibido tu información. Te enviaremos un correo de confirmación con las opciones de menú a la brevedad."
+	},
+	"faq": {
+		"eyebrow": "Información",
+		"heading": "Políticas y preguntas frecuentes",
+		"items": [
+			{
+				"q": "¿Cuánto cuesta el ticket y dónde se realiza?",
+				"a": "El ticket de cada junta tiene un valor de £65 por persona e incluye el menú completo (entrada, fondo, postre) más un cóctel de bienvenida. Los eventos se realizan en una locación cercana a London Bridge — la dirección exacta se comparte en el correo de confirmación, una vez completado el pago."
+			},
+			{
+				"q": "¿Tengo que ser Chileno para asistir?",
+				"a": "Para nada. La Junta está abierta a quien quiera sentarse a la mesa. Lo único que pedimos son ganas de compartir, conversar y dejarse sorprender por la cocina chilena."
+			},
+			{
+				"q": "¿Qué tipo de platos sirven?",
+				"a": "Cocina chilena hecha en Londres, con guiños de costa, campo y ciudad. Empanadas, pescados, guisos lentos, choclo, hierbas criollas y postres de toda la vida. El menú cambia cada mes según la temporada."
+			},
+			{
+				"q": "¿Qué trae el menú?",
+				"a": "El menú de cada junta se publica en el correo de confirmación, con dos opciones a elegir (una de ellas siempre con alternativa vegetariana). Suele incluir entrada, fondo y postre."
+			},
+			{
+				"q": "¿Qué bebestibles son considerados en el menú?",
+				"a": "Cada junta incluye un pisco sour de bienvenida y una copa de vino chileno seleccionada para acompañar el fondo. Tenemos también agua y opciones sin alcohol incluidas."
+			},
+			{
+				"q": "¿Si quiero beber más de una copa de vino, qué debo hacer?",
+				"a": "Tendremos botellas adicionales disponibles para quienes quieran seguir. Se pagan en el momento, directamente en la mesa."
+			},
+			{
+				"q": "¿Tienen opciones vegetarianas o sin gluten?",
+				"a": "Sí. Siempre ofrecemos al menos una opción vegetariana, y podemos adaptar el menú a un régimen sin gluten si nos avisas con anticipación al reservar."
+			},
+			{
+				"q": "¿Qué sucede si tengo alergias alimentarias?",
+				"a": "Indícanoslo en el formulario de reserva y te confirmaremos por correo qué adaptaciones podemos hacer. Si la alergia es severa, seremos transparentes contigo respecto a la cocina compartida."
+			},
+			{
+				"q": "¿Con qué frecuencia hacen los eventos?",
+				"a": "Una vez al mes, generalmente un sábado o domingo de tarde. Puedes suscribirte para recibir las fechas con anticipación."
+			},
+			{
+				"q": "¿Puedo cancelar mi cita una vez que ya he reservado y pagado?",
+				"a": "Aceptamos cancelaciones con reembolso completo hasta 7 días antes del evento. Después de esa fecha, podemos transferir tu lugar a otra persona o a la próxima junta, según disponibilidad."
+			}
+		]
+	},
+	"footer": {
+		"tagline": "Cada junta un viaje de ida y vuelta al hogar",
+		"location": "Londres"
+	}
+}
