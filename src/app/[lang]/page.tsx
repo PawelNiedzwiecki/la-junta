@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
+import ReservaForm from "@/components/forms/ReservaForm";
+import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/sections/Hero";
-import Historia from "@/components/sections/Historia";
 import Cocina from "@/components/sections/Cocina";
 import Comunidad from "@/components/sections/Comunidad";
-import MenuCard from "@/components/ui/MenuCard";
 import CtaBanner from "@/components/sections/CtaBanner";
-import Proceso from "@/components/sections/Proceso";
-import ReservaForm from "@/components/forms/ReservaForm";
 import Faq from "@/components/sections/Faq";
-import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import Historia from "@/components/sections/Historia";
+import Proceso from "@/components/sections/Proceso";
+import MenuCard from "@/components/ui/MenuCard";
 import { getDictionary, hasLocale } from "./dictionaries";
 
 export default async function Home({

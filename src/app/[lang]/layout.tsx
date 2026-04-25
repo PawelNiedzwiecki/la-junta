@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "../globals.css";
@@ -38,9 +39,14 @@ export default async function RootLayout({
 }) {
 	const { lang } = await params;
 	return (
-		<html lang={lang} className={montserrat.variable} data-scroll-behavior="smooth">
+		<html
+			lang={lang}
+			className={montserrat.variable}
+			data-scroll-behavior="smooth"
+		>
 			<body className="bg-cream text-dark min-h-screen flex flex-col antialiased">
 				{children}
+				<Analytics />
 			</body>
 		</html>
 	);
