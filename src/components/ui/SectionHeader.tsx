@@ -26,7 +26,7 @@ export default function SectionHeader({
 				<Eyebrow withDiamond>{eyebrow}</Eyebrow>
 			)}
 			<h2
-				className={`${headingColor} text-4xl sm:text-5xl md:text-[3.25rem] leading-[1.05] tracking-tight ${
+				className={`${headingColor} text-3xl sm:text-4xl md:text-[3.25rem] leading-[1.1] tracking-tight ${
 					italic ? "italic font-light" : "font-medium"
 				}`}
 			>

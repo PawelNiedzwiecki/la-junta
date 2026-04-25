@@ -78,7 +78,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 			<div className="mx-auto max-w-[820px] flex flex-col items-center gap-8 text-center">
 				<Eyebrow withDiamond>{dict.eyebrow}</Eyebrow>
 
-				<h2 className="text-4xl sm:text-5xl md:text-[3.25rem] leading-[1.05] tracking-tight font-semibold text-dark">
+				<h2 className="text-3xl sm:text-4xl md:text-[3.25rem] leading-[1.1] tracking-tight font-semibold text-dark">
 					{dict.heading}
 				</h2>
 

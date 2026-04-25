@@ -12,10 +12,10 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 			id="menu"
 			className="relative bg-cream paper-grain px-4 sm:px-6 py-24 sm:py-28"
 		>
-			<div className="relative mx-auto max-w-215">
+			<div className="relative mx-auto max-w-215 pt-10 sm:pt-0">
 				{/* Date stamp */}
 				<div
-					className="absolute right-6 sm:right-10 -top-4 z-10 rotate-12
+					className="absolute right-6 sm:right-10 top-0 sm:-top-4 z-10 rotate-12
 						w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-amber
 						flex flex-col items-center justify-center
 						border-[3px] border-amber-warm/30
@@ -42,7 +42,7 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 							<DiamondsFour size={14} weight="duotone" aria-hidden />
 						</div>
 
-						<h2 className="text-cream text-[2.25rem] sm:text-4xl md:text-[3.25rem] leading-[1.05] tracking-tight font-semibold max-w-170">
+						<h2 className="text-cream text-[1.9rem] sm:text-4xl md:text-[3.25rem] leading-[1.05] tracking-tight font-semibold max-w-170">
 							{dict.heading}
 						</h2>
 

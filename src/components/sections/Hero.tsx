@@ -7,14 +7,14 @@ export default function Hero({ dict }: { dict: DictType["hero"] }) {
 	return (
 		<section
 			id="top"
-			className="relative bg-cream paper-grain px-6 pt-20 pb-24 sm:pt-24 sm:pb-28"
+			className="relative bg-cream paper-grain px-6 pt-16 pb-20 sm:pt-24 sm:pb-28"
 		>
 			<div className="mx-auto max-w-225 flex flex-col items-center text-center gap-8">
 				<Eyebrow>{dict.eyebrow}</Eyebrow>
 
 				<PergolaIllustration />
 
-				<h1 className="tracking-tight leading-[0.95] text-[4.5rem] sm:text-[6rem] md:text-[7.5rem]">
+				<h1 className="tracking-tight leading-[0.95] text-[3rem] sm:text-[5rem] md:text-[7rem]">
 					<span className="text-dark font-medium">La </span>
 					<span className="text-amber font-medium">Junta</span>
 				</h1>
