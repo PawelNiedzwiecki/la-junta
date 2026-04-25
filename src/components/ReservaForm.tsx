@@ -25,8 +25,17 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 		apellido: "",
 		email: "",
 		celular: "",
-		alergia: "",
 	});
+	const [extrasCount, setExtrasCount] = useState(0);
+	const [guests, setGuests] = useState<Array<{ alergias: string[]; alergiaOtra: string }>>(
+		() => Array.from({ length: 5 }, () => ({ alergias: [], alergiaOtra: "" }))
+	);
+
+	const totalGuests = extrasCount + 1;
+
+	const allValid = guests
+		.slice(0, totalGuests)
+		.every((g) => !g.alergias.includes("otra") || g.alergiaOtra.trim() !== "");
 
 	const canSubmit =
 		accepted &&
@@ -34,7 +43,26 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 		fields.apellido.trim() !== "" &&
 		fields.email.trim() !== "" &&
 		fields.celular.trim() !== "" &&
-		fields.alergia !== "";
+		allValid;
+
+	const toggleGuestAlergia = (guestIdx: number, key: string) =>
+		setGuests((prev) =>
+			prev.map((g, i) =>
+				i !== guestIdx
+					? g
+					: {
+							...g,
+							alergias: g.alergias.includes(key)
+								? g.alergias.filter((k) => k !== key)
+								: [...g.alergias, key],
+					  }
+			)
+		);
+
+	const setGuestAlergiaOtra = (guestIdx: number, value: string) =>
+		setGuests((prev) =>
+			prev.map((g, i) => (i !== guestIdx ? g : { ...g, alergiaOtra: value }))
+		);
 
 	const handleField =
 		(key: keyof typeof fields) =>
@@ -144,11 +172,12 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 										aria-label="Prefijo internacional"
 										value={dialCode}
 										onChange={(e) => setDialCode(e.target.value)}
-										className="field appearance-none px-3 pr-8 w-auto cursor-pointer"
+										className="field appearance-none cursor-pointer shrink-0 px-2 pr-6 text-[0.85rem]"
 										style={{
+											width: "5.5rem",
 											backgroundImage: "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%232d2416%22 stroke-width=%221.5%22><polyline points=%223 5 6 8 9 5%22/></svg>')",
 											backgroundRepeat: "no-repeat",
-											backgroundPosition: "right 0.6rem center",
+											backgroundPosition: "right 0.4rem center",
 										}}
 									>
 										{DIAL_CODES.map((d) => (
@@ -173,42 +202,14 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 							</div>
 
 							<div className="sm:col-span-2">
-								<label className="field-label" htmlFor="alergia">
-									{dict.fields.alergia}{" "}
-									<span className="req">{dict.fields.required}</span>
-								</label>
-								<select
-									id="alergia"
-									name="alergia"
-									required
-									value={fields.alergia}
-									onChange={handleField("alergia")}
-									className="field appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%232d2416%22 stroke-width=%221.5%22><polyline points=%223 5 6 8 9 5%22/></svg>')] bg-no-repeat"
-									style={{
-										backgroundPosition: "right 1rem center",
-										paddingRight: "2.5rem",
-									}}
-								>
-									<option value="" disabled>
-										{dict.alergiaOptions.placeholder}
-									</option>
-									<option value="ninguna">{dict.alergiaOptions.ninguna}</option>
-									<option value="gluten">{dict.alergiaOptions.gluten}</option>
-									<option value="lactosa">{dict.alergiaOptions.lactosa}</option>
-									<option value="frutos-secos">{dict.alergiaOptions.frutosSecos}</option>
-									<option value="mariscos">{dict.alergiaOptions.mariscos}</option>
-									<option value="otra">{dict.alergiaOptions.otra}</option>
-								</select>
-							</div>
-
-							<div className="sm:col-span-2">
 								<label className="field-label" htmlFor="extras">
 									{dict.fields.extras}
 								</label>
 								<select
 									id="extras"
 									name="extras"
-									defaultValue="0"
+									value={String(extrasCount)}
+									onChange={(e) => setExtrasCount(Number(e.target.value))}
 									className="field appearance-none"
 									style={{
 										backgroundImage:
@@ -224,6 +225,44 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									<option value="3">{dict.extrasOptions.mas3}</option>
 									<option value="4">{dict.extrasOptions.mas4}</option>
 								</select>
+							</div>
+
+							<div className="sm:col-span-2 flex flex-col gap-4 mt-2">
+								<p className="field-label">{dict.fields.alergiaHeading}</p>
+								{guests.slice(0, totalGuests).map((guest, i) => (
+									<details key={i} open className="rounded-lg border border-dark/10 bg-cream/40">
+										<summary className="flex items-center justify-between gap-3 px-4 py-3 text-[0.85rem] font-medium text-dark cursor-pointer select-none">
+											{i === 0 ? dict.fields.alergiaYo : `${dict.fields.guestLabel} ${i + 1}`}
+											<span className="accordion-icon text-dark/50" aria-hidden />
+										</summary>
+										<div className="px-4 pb-4 pt-1">
+											<div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
+												{(Object.entries(dict.alergiaOptions) as [string, string][]).map(([key, label]) => (
+													<label key={key} className="flex items-center gap-2.5 cursor-pointer text-[0.9rem] text-dark/85 leading-snug select-none">
+														<input
+															type="checkbox"
+															name={`alergia-${i}`}
+															value={key}
+															checked={guest.alergias.includes(key)}
+															onChange={() => toggleGuestAlergia(i, key)}
+															className="w-4 h-4 shrink-0 accent-[#8b5e3c]"
+														/>
+														{label}
+													</label>
+												))}
+											</div>
+											{guest.alergias.includes("otra") && (
+												<input
+													type="text"
+													placeholder={dict.fields.alergiaOtra}
+													className="field mt-3"
+													value={guest.alergiaOtra}
+													onChange={(e) => setGuestAlergiaOtra(i, e.target.value)}
+												/>
+											)}
+										</div>
+									</details>
+								))}
 							</div>
 
 							<label className="sm:col-span-2 mt-2 flex items-start gap-3 cursor-pointer text-[0.95rem] text-dark/85 leading-snug">

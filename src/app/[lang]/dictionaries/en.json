@@ -55,7 +55,10 @@
 		"descriptionLabel": "What's on this month?",
 		"description": "a welcome pisco sour, coast and countryside flavours on the same plate, corn slow-cooked over embers, creole herbs, red wine, and a dessert that tastes like Sunday. A long table, a slow afternoon, and all the time in the world to talk.",
 		"ctaPrimary": "See our May menu",
-		"ctaSecondary": "Are you in?"
+		"ctaSecondary": "Are you in?",
+		"dateDay": "9",
+		"dateMonthShort": "MAY",
+		"dateMonthLong": "May"
 	},
 	"ctaBanner": {
 		"cta": "Reserve your seat"
@@ -89,7 +92,10 @@
 			"apellido": "Last name",
 			"email": "Email",
 			"celular": "Phone",
-			"alergia": "Do you have any food allergies?",
+			"alergiaHeading": "Food allergies",
+			"alergiaYo": "Me",
+			"alergiaOtra": "Specify your allergy",
+			"guestLabel": "Guest",
 			"extras": "Would you like to register more people?",
 			"required": "(Required)"
 		},
@@ -100,13 +106,21 @@
 			"celular": "7700 900 000"
 		},
 		"alergiaOptions": {
-			"placeholder": "Select an option",
-			"ninguna": "No, none",
-			"gluten": "Gluten",
-			"lactosa": "Lactose",
+			"apio": "Celery",
+			"cerealesGluten": "Cereals containing gluten",
+			"crustaceos": "Crustaceans",
+			"huevos": "Eggs",
+			"pescado": "Fish",
+			"altramuz": "Lupin",
+			"leche": "Milk",
+			"moluscos": "Molluscs",
+			"cacahuetes": "Peanuts",
+			"sesamo": "Sesame",
+			"soja": "Soybeans",
+			"sulfitos": "Sulphur dioxide and sulphites",
 			"frutosSecos": "Tree nuts",
-			"mariscos": "Shellfish",
-			"otra": "Other (I'll detail it in the email)"
+			"mostaza": "Mustard",
+			"otra": "Other"
 		},
 		"extrasOptions": {
 			"solo": "No, just me",

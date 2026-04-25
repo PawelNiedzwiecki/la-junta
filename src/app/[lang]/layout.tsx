@@ -38,7 +38,7 @@ export default async function RootLayout({
 }) {
 	const { lang } = await params;
 	return (
-		<html lang={lang} className={montserrat.variable}>
+		<html lang={lang} className={montserrat.variable} data-scroll-behavior="smooth">
 			<body className="bg-cream text-dark min-h-screen flex flex-col antialiased">
 				{children}
 			</body>

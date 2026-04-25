@@ -1,16 +1,13 @@
 import Image from "next/image";
 
-type Props = { className?: string };
-
-export default function PergolaIllustration({ className = "" }: Props) {
+export default function PergolaIllustration() {
 	return (
 		<Image
 			src="/images/kitchen.png"
 			alt="La Junta kitchen"
 			width={520}
 			height={390}
-			className={className}
-			style={{ height: "auto" }}
+			style={{ width: "100%", maxWidth: 520, height: "auto" }}
 			priority
 		/>
 	);

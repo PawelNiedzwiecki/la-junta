@@ -1,7 +1,7 @@
 import { CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import LangSwitcher from "./LangSwitcher";
 import type { DictType } from "@/app/[lang]/dictionaries";
+import LangSwitcher from "./LangSwitcher";
 
 type NavbarDict = DictType["navbar"];
 
@@ -30,7 +30,7 @@ export default function Navbar({
 						className="text-3xl sm:text-[2rem] tracking-tight leading-none font-bold"
 					>
 						<span className="text-white">La </span>
-						<span className="text-amber italic">Junta</span>
+						<span className="text-amber">Junta</span>
 					</Link>
 					<p className="italic text-cream/70 text-[0.78rem] sm:text-[0.85rem]">
 						{dict.tagline}

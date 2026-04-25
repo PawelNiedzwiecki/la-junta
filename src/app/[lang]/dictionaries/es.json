@@ -55,14 +55,17 @@
 		"descriptionLabel": "¿Qué nos trae este mes?",
 		"description": "un pisco sour de bienvenida, sabores de costa y campo en un mismo plato, choclo cocinado despacio sobre brasa, hierbas criollas, vino tinto y un postre que sabe a domingo. Una mesa larga, una tarde lenta, y todo el tiempo del mundo para conversar.",
 		"ctaPrimary": "Revisa nuestra mesa de Mayo",
-		"ctaSecondary": "¿Te apuntas?"
+		"ctaSecondary": "¿Te apuntas?",
+		"dateDay": "9",
+		"dateMonthShort": "MAY",
+		"dateMonthLong": "Mayo"
 	},
 	"ctaBanner": {
 		"cta": "Reserva tu lugar"
 	},
 	"proceso": {
 		"eyebrow": "El Proceso",
-		"heading": "Cómo funciona",
+		"heading": "¿Cómo funciona?",
 		"steps": [
 			{
 				"title": "Regístrate",
@@ -89,7 +92,10 @@
 			"apellido": "Apellido",
 			"email": "Email",
 			"celular": "Celular",
-			"alergia": "¿Tienes alergia alimenticia?",
+			"alergiaHeading": "Alergias alimenticias",
+			"alergiaYo": "Yo",
+			"alergiaOtra": "Especifica tu alergia",
+			"guestLabel": "Persona",
 			"extras": "¿Quieres registrar a más personas?",
 			"required": "(Requerido)"
 		},
@@ -100,13 +106,21 @@
 			"celular": "7700 900 000"
 		},
 		"alergiaOptions": {
-			"placeholder": "Selecciona una opción",
-			"ninguna": "No, ninguna",
-			"gluten": "Gluten",
-			"lactosa": "Lactosa",
+			"apio": "Apio",
+			"cerealesGluten": "Cereales con gluten",
+			"crustaceos": "Crustáceos",
+			"huevos": "Huevos",
+			"pescado": "Pescado",
+			"altramuz": "Altramuz",
+			"leche": "Leche",
+			"moluscos": "Moluscos",
+			"cacahuetes": "Cacahuetes",
+			"sesamo": "Sésamo",
+			"soja": "Soja",
+			"sulfitos": "Dióxido de azufre y sulfitos",
 			"frutosSecos": "Frutos secos",
-			"mariscos": "Mariscos",
-			"otra": "Otra (lo detallo en el correo)"
+			"mostaza": "Mostaza",
+			"otra": "Otra"
 		},
 		"extrasOptions": {
 			"solo": "No, solo yo",
