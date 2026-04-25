@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Historia from "@/components/Historia";
-import Cocina from "@/components/Cocina";
-import Comunidad from "@/components/Comunidad";
-import MenuCard from "@/components/MenuCard";
-import CtaBanner from "@/components/CtaBanner";
-import Proceso from "@/components/Proceso";
-import ReservaForm from "@/components/ReservaForm";
-import Faq from "@/components/Faq";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import Historia from "@/components/sections/Historia";
+import Cocina from "@/components/sections/Cocina";
+import Comunidad from "@/components/sections/Comunidad";
+import MenuCard from "@/components/ui/MenuCard";
+import CtaBanner from "@/components/sections/CtaBanner";
+import Proceso from "@/components/sections/Proceso";
+import ReservaForm from "@/components/forms/ReservaForm";
+import Faq from "@/components/sections/Faq";
+import Footer from "@/components/layout/Footer";
 import { getDictionary, hasLocale } from "./dictionaries";
 
 export default async function Home({

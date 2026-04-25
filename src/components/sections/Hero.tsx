@@ -1,7 +1,7 @@
 import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
-import Eyebrow from "./Eyebrow";
-import PergolaIllustration from "./PergolaIllustration";
+import Eyebrow from "../ui/Eyebrow";
+import PergolaIllustration from "../illustrations/PergolaIllustration";
 
 export default function Hero({ dict }: { dict: DictType["hero"] }) {
 	return (
@@ -9,7 +9,7 @@ export default function Hero({ dict }: { dict: DictType["hero"] }) {
 			id="top"
 			className="relative bg-cream paper-grain px-6 pt-20 pb-24 sm:pt-24 sm:pb-28"
 		>
-			<div className="mx-auto max-w-[900px] flex flex-col items-center text-center gap-8">
+			<div className="mx-auto max-w-225 flex flex-col items-center text-center gap-8">
 				<Eyebrow>{dict.eyebrow}</Eyebrow>
 
 				<PergolaIllustration />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Leaf } from "@phosphor-icons/react";
-import Eyebrow from "./Eyebrow";
+import Eyebrow from "../ui/Eyebrow";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
 const DIAL_CODES = [

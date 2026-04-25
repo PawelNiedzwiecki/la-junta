@@ -1,5 +1,5 @@
 import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../ui/SectionHeader";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
 export default function Comunidad({ dict }: { dict: DictType["comunidad"] }) {
