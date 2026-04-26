@@ -7,7 +7,7 @@ export default function PergolaIllustration() {
 			alt="La Junta kitchen"
 			width={520}
 			height={390}
-			className="w-full max-w-[520px] h-auto max-h-[260px] sm:max-h-none object-contain"
+			className="w-full max-w-225 h-auto object-contain"
 			priority
 		/>
 	);

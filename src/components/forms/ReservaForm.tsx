@@ -75,14 +75,14 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 			className="bg-sand px-6 py-24 sm:py-28 paper-grain"
 			style={{ background: "#d4c4a0" }}
 		>
-			<div className="mx-auto max-w-[820px] flex flex-col items-center gap-8 text-center">
+			<div className="mx-auto max-w-205 flex flex-col items-center gap-8 text-center">
 				<Eyebrow withDiamond>{dict.eyebrow}</Eyebrow>
 
 				<h2 className="text-3xl sm:text-4xl md:text-[3.25rem] leading-[1.1] tracking-tight font-semibold text-dark">
 					{dict.heading}
 				</h2>
 
-				<p className="italic text-[1.05rem] sm:text-[1.15rem] text-dark/80 max-w-[560px]">
+				<p className="italic text-[1.05rem] sm:text-[1.15rem] text-dark/80 max-w-140">
 					{dict.subtext}
 				</p>
 

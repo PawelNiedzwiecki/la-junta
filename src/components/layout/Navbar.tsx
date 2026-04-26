@@ -22,8 +22,7 @@ export default function Navbar({
 
 	return (
 		<header className="sticky top-0 z-50 bg-dark text-cream border-b border-black/30">
-			<div className="mx-auto max-w-[1200px] px-5 lg:px-10">
-
+			<div className="mx-auto max-w-300 px-5 lg:px-10">
 				{/* ── Desktop top row ── */}
 				<div className="hidden md:flex pt-5 pb-3 flex-col items-center gap-1.5">
 					<Link
@@ -41,7 +40,7 @@ export default function Navbar({
 					<LangSwitcher
 						currentLang={lang}
 						label={dict.switchLabel}
-						className="w-[7.5rem] text-cream/60 hover:text-amber text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
+						className="w-30 text-cream/60 hover:text-amber text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
 					/>
 					<nav className="flex-1 flex items-center justify-center gap-x-7 text-[0.82rem] tracking-wide text-cream/85">
 						{navLinks.map((l, i) => (
@@ -50,7 +49,9 @@ export default function Navbar({
 									{l.label}
 								</a>
 								{i < navLinks.length - 1 && (
-									<span className="text-cream/30 select-none" aria-hidden>·</span>
+									<span className="text-cream/30 select-none" aria-hidden>
+										·
+									</span>
 								)}
 							</span>
 						))}
@@ -61,7 +62,6 @@ export default function Navbar({
 						rel="noopener noreferrer"
 						className="inline-flex items-center justify-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors whitespace-nowrap"
 					>
-						<CalendarCheck size={14} weight="duotone" aria-hidden />
 						<span>{dict.cta}</span>
 					</a>
 				</div>
@@ -114,7 +114,6 @@ export default function Navbar({
 						</div>
 					</div>
 				</details>
-
 			</div>
 		</header>
 	);

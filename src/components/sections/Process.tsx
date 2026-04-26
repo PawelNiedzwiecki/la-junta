@@ -2,7 +2,7 @@ import { Wine, DiamondsFour } from "@phosphor-icons/react/dist/ssr";
 import SectionHeader from "../ui/SectionHeader";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
-export default function Proceso({ dict }: { dict: DictType["proceso"] }) {
+export default function Process({ dict }: { dict: DictType["proceso"] }) {
 	return (
 		<section
 			id="proceso"

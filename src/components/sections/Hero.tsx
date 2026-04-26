@@ -1,39 +1,41 @@
 import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
-import Eyebrow from "../ui/Eyebrow";
 import PergolaIllustration from "../illustrations/PergolaIllustration";
+import Eyebrow from "../ui/Eyebrow";
 
 export default function Hero({ dict }: { dict: DictType["hero"] }) {
 	return (
 		<section
 			id="top"
-			className="relative bg-cream paper-grain px-6 pt-16 pb-20 sm:pt-24 sm:pb-28"
+			className="relative bg-cream paper-grain px-6 pt-10 pb-14 sm:pt-14 sm:pb-18"
 		>
-			<div className="mx-auto max-w-225 flex flex-col items-center text-center gap-8">
-				<Eyebrow>{dict.eyebrow}</Eyebrow>
+			<div className="mx-auto max-w-225 flex flex-col items-center text-center">
+				<Eyebrow className="mb-6">{dict.eyebrow}</Eyebrow>
 
-				<PergolaIllustration />
-
-				<h1 className="tracking-tight leading-[0.95] text-[3rem] sm:text-[5rem] md:text-[7rem]">
-					<span className="text-dark font-medium">La </span>
-					<span className="text-amber font-medium">Junta</span>
+				<h1 className="tracking-tight leading-none mb-2 text-[3rem] sm:text-[4.5rem] md:text-[6rem]">
+					<span className="text-dark/40 font-extralight">La </span>
+					<span className="text-amber font-bold">Junta</span>
 				</h1>
 
-				<div className="hairline-amber hairline w-full max-w-[420px]">
+				<div className="hairline-amber hairline w-full max-w-60 mb-6">
 					<DiamondsFour
-						size={16}
+						size={14}
 						weight="duotone"
 						className="text-amber"
 						aria-hidden
 					/>
 				</div>
 
-				<p className="text-2xl sm:text-[1.7rem] leading-snug text-dark max-w-[640px]">
+				<div className="w-full mb-8">
+					<PergolaIllustration />
+				</div>
+
+				<p className="text-xl sm:text-2xl leading-snug text-dark max-w-140 mb-4">
 					{dict.subPre}
 					<span className="font-semibold text-amber">{dict.subEmphasis}</span>
 				</p>
 
-				<p className="italic text-lg sm:text-xl text-muted/90 max-w-[560px]">
+				<p className="italic text-base sm:text-lg text-muted/80 max-w-120">
 					{dict.tagline}
 				</p>
 			</div>
