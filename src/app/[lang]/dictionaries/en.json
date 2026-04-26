@@ -104,7 +104,7 @@
 			"nombre": "Your first name",
 			"apellido": "Your last name",
 			"email": "you@email.com",
-			"celular": "7700 900 000"
+			"celular": "+44 7700 900 000"
 		},
 		"alergiaOptions": {
 			"apio": "Celery",

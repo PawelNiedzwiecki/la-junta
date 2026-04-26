@@ -12,9 +12,7 @@ export default function Kitchen({ dict }: { dict: DictType["cocina"] }) {
 				<SectionHeader eyebrow={dict.eyebrow} heading={dict.heading} />
 
 				<figure className="w-full mt-4">
-					<div className="overflow-hidden">
-						<KitchenSceneIllustration className="w-full h-auto block" />
-					</div>
+					<KitchenSceneIllustration className="w-full h-auto block" />
 					<figcaption className="eyebrow mt-4 text-center text-muted/80">
 						{dict.caption}
 					</figcaption>

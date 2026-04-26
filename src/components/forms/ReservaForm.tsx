@@ -1,25 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import { Leaf } from "@phosphor-icons/react";
-import Eyebrow from "../ui/Eyebrow";
+import { Leaf } from "@phosphor-icons/react/dist/ssr";
+import { useCallback, useState } from "react";
 import type { DictType } from "@/app/[lang]/dictionaries";
+import Eyebrow from "../ui/Eyebrow";
 
-const DIAL_CODES = [
-	{ code: "+44", flag: "🇬🇧", label: "Reino Unido" },
-	{ code: "+34", flag: "🇪🇸", label: "España" },
-	{ code: "+51", flag: "🇵🇪", label: "Perú" },
-	{ code: "+56", flag: "🇨🇱", label: "Chile" },
-	{ code: "+57", flag: "🇨🇴", label: "Colombia" },
-	{ code: "+52", flag: "🇲🇽", label: "México" },
-	{ code: "+54", flag: "🇦🇷", label: "Argentina" },
-	{ code: "+1",  flag: "🇺🇸", label: "EE.UU." },
-];
+const SELECT_STYLE = {
+	backgroundImage:
+		"url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%232d2416%22 stroke-width=%221.5%22><polyline points=%223 5 6 8 9 5%22/></svg>')",
+	backgroundRepeat: "no-repeat",
+	backgroundPosition: "right 1rem center",
+	paddingRight: "2.5rem",
+} as const;
 
 export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 	const [submitted, setSubmitted] = useState(false);
 	const [accepted, setAccepted] = useState(false);
-	const [dialCode, setDialCode] = useState("+44");
 	const [fields, setFields] = useState({
 		nombre: "",
 		apellido: "",
@@ -27,9 +23,9 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 		celular: "",
 	});
 	const [extrasCount, setExtrasCount] = useState(0);
-	const [guests, setGuests] = useState<Array<{ alergias: string[]; alergiaOtra: string }>>(
-		() => Array.from({ length: 5 }, () => ({ alergias: [], alergiaOtra: "" }))
-	);
+	const [guests, setGuests] = useState<
+		Array<{ alergias: string[]; alergiaOtra: string }>
+	>(() => Array.from({ length: 5 }, () => ({ alergias: [], alergiaOtra: "" })));
 
 	const totalGuests = extrasCount + 1;
 
@@ -45,7 +41,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 		fields.celular.trim() !== "" &&
 		allValid;
 
-	const toggleGuestAlergia = (guestIdx: number, key: string) =>
+	const toggleGuestAlergia = useCallback((guestIdx: number, key: string) =>
 		setGuests((prev) =>
 			prev.map((g, i) =>
 				i !== guestIdx
@@ -55,14 +51,14 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 							alergias: g.alergias.includes(key)
 								? g.alergias.filter((k) => k !== key)
 								: [...g.alergias, key],
-					  }
-			)
-		);
+						},
+			),
+		), []);
 
-	const setGuestAlergiaOtra = (guestIdx: number, value: string) =>
+	const setGuestAlergiaOtra = useCallback((guestIdx: number, value: string) =>
 		setGuests((prev) =>
-			prev.map((g, i) => (i !== guestIdx ? g : { ...g, alergiaOtra: value }))
-		);
+			prev.map((g, i) => (i !== guestIdx ? g : { ...g, alergiaOtra: value })),
+		), []);
 
 	const handleField =
 		(key: keyof typeof fields) =>
@@ -73,7 +69,6 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 		<section
 			id="reserva"
 			className="bg-sand px-6 py-24 sm:py-28 paper-grain"
-			style={{ background: "#d4c4a0" }}
 		>
 			<div className="mx-auto max-w-205 flex flex-col items-center gap-8 text-center">
 				<Eyebrow withDiamond>{dict.eyebrow}</Eyebrow>
@@ -167,38 +162,18 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									{dict.fields.celular}{" "}
 									<span className="req">{dict.fields.required}</span>
 								</label>
-								<div className="flex items-stretch gap-2">
-									<select
-										aria-label="Prefijo internacional"
-										value={dialCode}
-										onChange={(e) => setDialCode(e.target.value)}
-										className="field appearance-none cursor-pointer shrink-0 px-2 pr-6 text-[0.85rem]"
-										style={{
-											width: "5.5rem",
-											backgroundImage: "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%232d2416%22 stroke-width=%221.5%22><polyline points=%223 5 6 8 9 5%22/></svg>')",
-											backgroundRepeat: "no-repeat",
-											backgroundPosition: "right 0.4rem center",
-										}}
-									>
-										{DIAL_CODES.map((d) => (
-											<option key={d.code} value={d.code}>
-												{d.flag} {d.code}
-											</option>
-										))}
-									</select>
-									<input
-										id="celular"
-										name="celular"
-										type="tel"
-										required
-										inputMode="tel"
-										autoComplete="tel-national"
-										placeholder={dict.placeholders.celular}
-										className="field flex-1"
-										value={fields.celular}
-										onChange={handleField("celular")}
-									/>
-								</div>
+								<input
+									id="celular"
+									name="celular"
+									type="tel"
+									required
+									inputMode="tel"
+									autoComplete="tel"
+									placeholder={dict.placeholders.celular}
+									className="field"
+									value={fields.celular}
+									onChange={handleField("celular")}
+								/>
 							</div>
 
 							<div className="sm:col-span-2">
@@ -211,13 +186,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									value={String(extrasCount)}
 									onChange={(e) => setExtrasCount(Number(e.target.value))}
 									className="field appearance-none"
-									style={{
-										backgroundImage:
-											"url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%232d2416%22 stroke-width=%221.5%22><polyline points=%223 5 6 8 9 5%22/></svg>')",
-										backgroundRepeat: "no-repeat",
-										backgroundPosition: "right 1rem center",
-										paddingRight: "2.5rem",
-									}}
+									style={SELECT_STYLE}
 								>
 									<option value="0">{dict.extrasOptions.solo}</option>
 									<option value="1">{dict.extrasOptions.mas1}</option>
@@ -230,22 +199,39 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 							<div className="sm:col-span-2 flex flex-col gap-4 mt-2">
 								<p className="field-label">{dict.fields.alergiaHeading}</p>
 								{guests.slice(0, totalGuests).map((guest, i) => (
-									<details key={i} open className="rounded-lg border border-dark/10 bg-cream/40">
+									<details
+										key={i}
+										open
+										className="rounded-lg border border-dark/10 bg-cream/40"
+									>
 										<summary className="flex items-center justify-between gap-3 px-4 py-3 text-[0.85rem] font-medium text-dark cursor-pointer select-none">
-											{i === 0 ? dict.fields.alergiaYo : `${dict.fields.guestLabel} ${i + 1}`}
-											<span className="accordion-icon text-dark/50" aria-hidden />
+											{i === 0
+												? dict.fields.alergiaYo
+												: `${dict.fields.guestLabel} ${i + 1}`}
+											<span
+												className="accordion-icon text-dark/50"
+												aria-hidden
+											/>
 										</summary>
 										<div className="px-4 pb-4 pt-1">
 											<div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
-												{(Object.entries(dict.alergiaOptions) as [string, string][]).map(([key, label]) => (
-													<label key={key} className="flex items-center gap-2.5 cursor-pointer text-[0.9rem] text-dark/85 leading-snug select-none">
+												{(
+													Object.entries(dict.alergiaOptions) as [
+														string,
+														string,
+													][]
+												).map(([key, label]) => (
+													<label
+														key={key}
+														className="flex items-center gap-2.5 cursor-pointer text-[0.9rem] text-dark/85 leading-snug select-none"
+													>
 														<input
 															type="checkbox"
 															name={`alergia-${i}`}
 															value={key}
 															checked={guest.alergias.includes(key)}
 															onChange={() => toggleGuestAlergia(i, key)}
-															className="w-4 h-4 shrink-0 accent-[#8b5e3c]"
+															className="w-4 h-4 shrink-0 accent-amber"
 														/>
 														{label}
 													</label>
@@ -257,7 +243,9 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 													placeholder={dict.fields.alergiaOtra}
 													className="field mt-3"
 													value={guest.alergiaOtra}
-													onChange={(e) => setGuestAlergiaOtra(i, e.target.value)}
+													onChange={(e) =>
+														setGuestAlergiaOtra(i, e.target.value)
+													}
 												/>
 											)}
 										</div>
@@ -271,7 +259,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									required
 									checked={accepted}
 									onChange={(e) => setAccepted(e.target.checked)}
-									className="mt-1 w-4 h-4 accent-[#8b5e3c]"
+									className="mt-1 w-4 h-4 accent-amber"
 								/>
 								<span>
 									{dict.consent.pre}
