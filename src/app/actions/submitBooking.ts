@@ -1,7 +1,6 @@
 "use server";
 
 import { render } from "@react-email/components";
-import { checkBotId } from "botid/server";
 import { google } from "googleapis";
 import { createElement } from "react";
 import { Resend } from "resend";
@@ -48,11 +47,6 @@ export async function submitBooking(
 ): Promise<BookingResult> {
 	if (payload.honeypot) {
 		return { ok: true };
-	}
-
-	const bot = await checkBotId();
-	if (bot.isBot && !bot.bypassed) {
-		return { ok: false, error: "bot" };
 	}
 
 	const { firstName, lastName, email, phone, guests } = payload;
