@@ -1,7 +1,7 @@
 "use server";
 
 import { render } from "@react-email/components";
-import { google } from "googleapis";
+import { createClient } from "@supabase/supabase-js";
 import { createElement } from "react";
 import { Resend } from "resend";
 import { EVENT } from "@/config/event";
@@ -10,19 +10,27 @@ import BookingNotification from "@/emails/BookingNotification";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const supabase = createClient(
+	process.env.SUPABASE_URL as string,
+	process.env.SUPABASE_SERVICE_ROLE_KEY as string,
+);
+
 async function appendToSheet(rows: string[][]) {
-	const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON!);
-	const auth = new google.auth.GoogleAuth({
-		credentials,
-		scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-	});
-	const sheets = google.sheets({ version: "v4", auth });
-	await sheets.spreadsheets.values.append({
-		spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-		range: "Sheet1!A1",
-		valueInputOption: "RAW",
-		requestBody: { values: rows },
-	});
+	const records = rows.map((r) => ({
+		submitted_at: r[0],
+		booker_name: r[1],
+		email: r[2],
+		phone: r[3],
+		guest_role: r[4],
+		guest_name: r[5],
+		allergies: r[6],
+		other_allergy: r[7],
+		total_guests: Number(r[8]),
+		event_name: r[9],
+		event_date: r[10],
+	}));
+	const { error } = await supabase.from("bookings").insert(records);
+	if (error) throw error;
 }
 
 export type BookingGuest = {
