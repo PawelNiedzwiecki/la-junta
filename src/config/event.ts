@@ -4,7 +4,7 @@ export const EVENT = {
   dateEn: "16th May 2026",
   time: "14:00",
   location: "London Bridge area",
-  notificationEmail: "bookings@lajunta.co.uk",
+  notificationEmail: "lajuntalondon@gmail.com",
   fromEmail: "bookings@lajunta.co.uk",
   fromName: "La Junta",
 } as const;
