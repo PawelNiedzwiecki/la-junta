@@ -51,7 +51,15 @@ export async function submitBooking(
 
 	const { firstName, lastName, email, phone, guests } = payload;
 	const bookerName = `${firstName} ${lastName}`;
-	const submittedAt = new Date().toISOString();
+	const submittedAt = new Date().toLocaleString("en-GB", {
+		timeZone: "Europe/London",
+		day: "2-digit",
+		month: "2-digit",
+		year: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+	});
 
 	const rows: string[][] = guests.map((guest, i) => [
 		submittedAt,
