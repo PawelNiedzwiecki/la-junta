@@ -83,6 +83,7 @@
 			"email": "Email",
 			"celular": "Celular",
 			"alergiaHeading": "Alergias alimenticias",
+				"alergiaHint": "¿Sin alergias? Deja todas las casillas sin marcar.",
 			"alergiaYo": "Yo",
 			"alergiaOtra": "Especifica tu alergia",
 			"guestLabel": "Persona",

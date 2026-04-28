@@ -265,6 +265,7 @@ export default function BookingForm({ dict }: { dict: DictType["reserva"] }) {
 
 							<div className="sm:col-span-2 flex flex-col gap-4 mt-2">
 								<p className="field-label">{dict.fields.alergiaHeading}</p>
+								<p className="text-[0.8rem] text-dark/55 -mt-2">{dict.fields.alergiaHint}</p>
 								{guests.slice(0, totalGuests).map((guest, i) => (
 									<details
 										key={i}

@@ -83,6 +83,7 @@
 				"email": "Email",
 				"celular": "Phone",
 				"alergiaHeading": "Food allergies",
+					"alergiaHint": "No allergies? Leave all boxes unchecked.",
 				"alergiaYo": "Me",
 				"alergiaOtra": "Specify your allergy",
 				"guestLabel": "Guest",

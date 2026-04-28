@@ -15,7 +15,7 @@ const supabase = createClient(
 	process.env.SUPABASE_SERVICE_ROLE_KEY as string,
 );
 
-async function appendToSheet(rows: string[][]) {
+async function insertBookings(rows: string[][]) {
 	const records = rows.map((r) => ({
 		submitted_at: r[0],
 		booker_name: r[1],
@@ -59,7 +59,8 @@ export async function submitBooking(
 
 	const { firstName, lastName, email, phone, guests } = payload;
 	const bookerName = `${firstName} ${lastName}`;
-	const submittedAt = new Date().toLocaleString("en-GB", {
+	const submittedAt = new Date();
+	const submittedAtFormatted = submittedAt.toLocaleString("en-GB", {
 		timeZone: "Europe/London",
 		day: "2-digit",
 		month: "2-digit",
@@ -70,7 +71,7 @@ export async function submitBooking(
 	});
 
 	const rows: string[][] = guests.map((guest, i) => [
-		submittedAt,
+		submittedAt.toISOString(),
 		bookerName,
 		email,
 		phone,
@@ -84,7 +85,7 @@ export async function submitBooking(
 	]);
 
 	try {
-		await appendToSheet(rows);
+		await insertBookings(rows);
 	} catch (err) {
 		console.error("Sheet append failed:", err);
 		return { ok: false, error: "sheet" };
@@ -98,7 +99,7 @@ export async function submitBooking(
 				email,
 				phone,
 				guests,
-				submittedAt,
+				submittedAt: submittedAtFormatted,
 			}),
 		),
 	]);
