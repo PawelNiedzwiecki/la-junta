@@ -276,7 +276,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 							<button
 								type="submit"
 								disabled={!canSubmit}
-								className="sm:col-span-2 mt-4 w-full inline-flex items-center justify-center rounded-full bg-dark hover:bg-[#1f190f] disabled:opacity-60 disabled:cursor-not-allowed text-amber text-[0.78rem] sm:text-[0.85rem] tracking-[0.22em] uppercase font-semibold px-10 py-5 transition-colors"
+								className="sm:col-span-2 mt-4 w-full inline-flex items-center justify-center rounded-full bg-dark hover:bg-[#1f190f] disabled:bg-dark/30 disabled:text-dark/40 disabled:cursor-not-allowed text-amber text-[0.78rem] sm:text-[0.85rem] tracking-[0.22em] uppercase font-semibold px-10 py-5 transition-colors"
 							>
 								{dict.submit}
 							</button>
