@@ -13,7 +13,7 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 			id="menu"
 			className="relative bg-cream paper-grain px-4 sm:px-6 py-16 sm:py-20"
 		>
-			<div className="relative mx-auto max-w-215 pt-10 sm:pt-0">
+			<div className="relative mx-auto max-w-215">
 				{/* Card */}
 				<div className="rounded-2xl border-2 border-dashed border-cream/20">
 					{/* Zone A — stub */}
@@ -29,29 +29,25 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 						</h2>
 
 						{/* Ticket detail row */}
-						<div className="flex items-center justify-center gap-6 mt-2 text-[0.88rem] sm:text-[0.92rem] bg-[#3f3525] rounded-full px-4 py-2">
-							<span className="flex items-center gap-2 text-cream/90">
+						<div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 mt-2 text-[0.88rem] sm:text-[0.92rem] sm:bg-[#3f3525] sm:rounded-full sm:px-4 sm:py-2">
+							<span className="flex items-center justify-center gap-2 text-cream/90 bg-[#3f3525] sm:bg-transparent rounded-full px-4 py-2 w-full sm:w-auto">
 								<Clock
-									size={20}
+									size={16}
 									weight="duotone"
 									className="text-cream shrink-0"
 									aria-hidden
 								/>
 								<span className="font-semibold tracking-wide">{dict.time}</span>
 							</span>
-							<span className="text-amber/40" aria-hidden>
-								|
-							</span>
-							<span className="flex items-center gap-2 text-cream/90">
+							<span className="text-amber/40 hidden sm:inline" aria-hidden>|</span>
+							<span className="flex items-center justify-center gap-2 text-cream/90 bg-[#3f3525] sm:bg-transparent rounded-full px-4 py-2 w-full sm:w-auto">
 								<MapPin
-									size={20}
+									size={16}
 									weight="duotone"
 									className="text-cream shrink-0"
 									aria-hidden
 								/>
-								<span className="font-semibold tracking-wide">
-									{dict.location}
-								</span>
+								<span className="font-semibold tracking-wide">{dict.location}</span>
 							</span>
 						</div>
 						<p className="flex items-center gap-1.5 italic text-cream/50 text-[0.8rem] bg-cream/5 border border-cream/10 rounded-full px-3 py-1.5">
@@ -82,7 +78,7 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 
 					{/* Zone B — body stub */}
 					<div className="bg-[#3f3525] rounded-b-[14px] px-6 sm:px-12 pt-8 pb-12 flex flex-col items-center text-center gap-6">
-						<div className="hairline hairline-cream w-full max-w-xs">
+						<div className="hairline hairline-amber w-full max-w-xs">
 							<ForkKnife
 								size={20}
 								weight="duotone"

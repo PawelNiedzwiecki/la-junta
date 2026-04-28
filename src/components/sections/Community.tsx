@@ -1,5 +1,4 @@
 import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
-import Image from "next/image";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import SectionHeader from "../ui/SectionHeader";
 

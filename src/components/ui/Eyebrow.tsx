@@ -4,19 +4,16 @@ type Props = {
 	children: React.ReactNode;
 	withDiamond?: boolean;
 	className?: string;
-	tone?: "muted" | "amber";
 };
 
 export default function Eyebrow({
 	children,
 	withDiamond = false,
 	className = "",
-	tone = "muted",
 }: Props) {
-	const color = tone === "amber" ? "text-amber" : "text-muted";
 	return (
 		<div
-			className={`eyebrow ${color} flex items-center justify-center gap-3 ${className}`}
+			className={`eyebrow text-muted flex items-center justify-center gap-3 ${className}`}
 		>
 			{withDiamond && (
 				<DiamondsFour size={14} weight="duotone" aria-hidden />

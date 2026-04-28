@@ -74,7 +74,7 @@ export default function Process({ dict }: { dict: DictType["proceso"] }) {
 						href="#reserva"
 						className="mt-2 w-full sm:w-auto self-start inline-block text-center bg-amber hover:bg-amber-warm transition-colors text-cream text-sm font-semibold rounded-full py-3 px-8"
 					>
-						Reserva tu lugar →
+						{dict.cta} →
 					</a>
 				</div>
 			</div>

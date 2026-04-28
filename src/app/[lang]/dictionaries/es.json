@@ -50,13 +50,7 @@
 		"descriptionLabel": "¿Qué nos trae este mes?",
 		"description": "Partimos con el abrazo cítrico del Pisco Sauer, para luego dejarnos llevar entre el mar y la huerta. Fuego lento, maíz molido a la usanza criolla y hierbas del campo, hasta llegar a la dulzura más chilena que existe.",
 		"ctaPrimary": "Revisa nuestra mesa de Mayo",
-		"ctaSecondary": "¿Te apuntas?",
-		"dateDay": "16",
-		"dateMonthShort": "MAY",
-		"dateMonthLong": "Mayo"
-	},
-	"ctaBanner": {
-		"cta": "Reserva tu lugar"
+		"ctaSecondary": "¿Te apuntas?"
 	},
 	"proceso": {
 		"eyebrow": "El Proceso",
@@ -76,7 +70,8 @@
 			}
 		],
 		"finalTitle": "Llega y disfruta",
-		"finalBody": "Llega con hambre, con ganas de compartir, y con tiempo para quedarte. Del resto nos encargamos nosotros."
+		"finalBody": "Llega con hambre, con ganas de compartir, y con tiempo para quedarte. Del resto nos encargamos nosotros.",
+		"cta": "Reserva tu lugar"
 	},
 	"reserva": {
 		"eyebrow": "Únete",

@@ -31,8 +31,7 @@
 			"eyebrow": "Our Kitchen",
 			"heading": "All the way to our London kitchen",
 			"p1": "We gather flavours from coast to countryside: fish that recalls the sea of Valparaíso, garden herbs, slow-cooked corn, chillies that wake the table. We take the humblest ingredient and give it the place of honour.",
-			"p2": "Every dish is a small story that tells a bigger one: that of a country cooked whole in a single pot. We don't want to surprise with tricks — we want to return to that flavour you recognise without knowing why: the one from your grandmother's kitchen, the market stall, the Sunday fire.",
-			"p3": "In simplicity lies beauty."
+			"p2": "Every dish is a small story that tells a bigger one: that of a country cooked whole in a single pot. We don't want to surprise with tricks — we want to return to that flavour you recognise without knowing why: the one from your grandmother's kitchen, the market stall, the Sunday fire. In simplicity lies beauty."
 		},
 		"comunidad": {
 			"eyebrow": "The Community",
@@ -51,13 +50,7 @@
 			"descriptionLabel": "What's on this month?",
 			"description": "a welcome pisco sour, coast and countryside flavours on the same plate, corn slow-cooked over embers, creole herbs, red wine, and a dessert that tastes like Sunday. A long table, a slow afternoon, and all the time in the world to talk.",
 			"ctaPrimary": "See our May menu",
-			"ctaSecondary": "Are you in?",
-			"dateDay": "9",
-			"dateMonthShort": "MAY",
-			"dateMonthLong": "May"
-		},
-		"ctaBanner": {
-			"cta": "Reserve your seat"
+			"ctaSecondary": "Are you in?"
 		},
 		"proceso": {
 			"eyebrow": "The Process",
@@ -77,7 +70,8 @@
 				}
 			],
 			"finalTitle": "Arrive and enjoy",
-			"finalBody": "Come hungry, ready to share, and with time to linger. We take care of everything else."
+			"finalBody": "Come hungry, ready to share, and with time to linger. We take care of everything else.",
+			"cta": "Reserve your seat"
 		},
 		"reserva": {
 			"eyebrow": "Join us",

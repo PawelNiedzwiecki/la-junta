@@ -1,4 +1,4 @@
-import { CalendarCheck, List, X } from "@phosphor-icons/react/dist/ssr";
+import { List, X } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import LangSwitcher from "./LangSwitcher";
@@ -108,7 +108,6 @@ export default function Navbar({
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors"
 							>
-								<CalendarCheck size={13} weight="duotone" aria-hidden />
 								<span>{dict.cta}</span>
 							</a>
 						</div>
