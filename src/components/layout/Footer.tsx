@@ -1,4 +1,8 @@
-import { EnvelopeSimple, InstagramLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
+import {
+	EnvelopeSimple,
+	InstagramLogo,
+	MapPin,
+} from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
 export default function Footer({ dict }: { dict: DictType["footer"] }) {
@@ -21,7 +25,7 @@ export default function Footer({ dict }: { dict: DictType["footer"] }) {
 						<InstagramLogo size={20} weight="duotone" />
 					</a>
 					<a
-						href="mailto:lajuntalondon@gmail.com"
+						href="mailto:bookings@lajunta.co.uk"
 						aria-label="Email"
 						className="text-cream/50 hover:text-cream transition-colors"
 					>
