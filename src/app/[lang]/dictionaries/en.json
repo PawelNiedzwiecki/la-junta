@@ -86,6 +86,7 @@
 				"alergiaYo": "Me",
 				"alergiaOtra": "Specify your allergy",
 				"guestLabel": "Guest",
+				"guestName": "Guest name",
 				"extras": "Would you like to register more people?",
 				"required": "(Required)"
 			},
@@ -93,7 +94,8 @@
 				"nombre": "Your first name",
 				"apellido": "Your last name",
 				"email": "you@email.com",
-				"celular": "+44 7700 900 000"
+				"celular": "+44 7700 900 000",
+				"guestName": "Full name"
 			},
 			"alergiaOptions": {
 				"apio": "Celery",
@@ -125,6 +127,8 @@
 				"post": " and authorise La Junta to contact me with details about the menu, date, and event location."
 			},
 			"submit": "Submit details",
+			"submitting": "Sending…",
+			"submitError": "Something went wrong. Please try again.",
 			"successTitle": "Thank you!",
 			"successBody": "We have received your details. We will send you a confirmation email with the menu options shortly."
 		},

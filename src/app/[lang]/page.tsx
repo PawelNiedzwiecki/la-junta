@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import ReservaForm from "@/components/forms/ReservaForm";
+import BookingForm from "@/components/forms/BookingForm";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Community from "@/components/sections/Community";
@@ -30,7 +30,7 @@ export default async function Home({
 				<Community dict={dict.comunidad} />
 				<MenuCard dict={dict.menuCard} />
 				<Process dict={dict.proceso} />
-				<ReservaForm dict={dict.reserva} />
+				<BookingForm dict={dict.reserva} />
 				<Faq dict={dict.faq} />
 			</main>
 			<Footer dict={dict.footer} />

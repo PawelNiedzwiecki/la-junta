@@ -86,6 +86,7 @@
 			"alergiaYo": "Yo",
 			"alergiaOtra": "Especifica tu alergia",
 			"guestLabel": "Persona",
+			"guestName": "Nombre del invitado",
 			"extras": "¿Quieres registrar a más personas?",
 			"required": "(Requerido)"
 		},
@@ -93,7 +94,8 @@
 			"nombre": "Tu nombre",
 			"apellido": "Tu apellido",
 			"email": "tu@correo.com",
-			"celular": "+44 7700 900 000"
+			"celular": "+44 7700 900 000",
+			"guestName": "Nombre completo"
 		},
 		"alergiaOptions": {
 			"apio": "Apio",
@@ -125,6 +127,8 @@
 			"post": " y autorizo a La Junta a contactarme con detalles del menú, fecha y ubicación del evento."
 		},
 		"submit": "Enviar información",
+		"submitting": "Enviando…",
+		"submitError": "Algo salió mal. Por favor inténtalo de nuevo.",
 		"successTitle": "¡Gracias!",
 		"successBody": "Hemos recibido tu información. Te enviaremos un correo de confirmación con las opciones de menú a la brevedad."
 	},

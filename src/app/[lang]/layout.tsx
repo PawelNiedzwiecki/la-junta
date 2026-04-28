@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
+import { BotIdClient } from "botid/client";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "../globals.css";
@@ -47,6 +48,7 @@ export default async function RootLayout({
 			<body className="bg-cream text-dark min-h-screen flex flex-col antialiased">
 				{children}
 				<Analytics />
+				<BotIdClient protect={[{ path: "/", method: "POST" }]} />
 			</body>
 		</html>
 	);

@@ -1,9 +1,10 @@
 "use client";
 
 import { Leaf } from "@phosphor-icons/react/dist/ssr";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useTransition } from "react";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import Eyebrow from "../ui/Eyebrow";
+import { submitBooking } from "@/app/actions/submitBooking";
 
 const SELECT_STYLE = {
 	backgroundImage:
@@ -13,63 +14,120 @@ const SELECT_STYLE = {
 	paddingRight: "2.5rem",
 } as const;
 
-export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
+export default function BookingForm({ dict }: { dict: DictType["reserva"] }) {
 	const [submitted, setSubmitted] = useState(false);
+	const [submitError, setSubmitError] = useState(false);
 	const [accepted, setAccepted] = useState(false);
+	const [isPending, startTransition] = useTransition();
 	const [fields, setFields] = useState({
-		nombre: "",
-		apellido: "",
+		firstName: "",
+		lastName: "",
 		email: "",
-		celular: "",
+		phone: "",
 	});
-	const [extrasCount, setExtrasCount] = useState(0);
+	const [extraGuestsCount, setExtraGuestsCount] = useState(0);
 	const [guests, setGuests] = useState<
-		Array<{ alergias: string[]; alergiaOtra: string }>
-	>(() => Array.from({ length: 5 }, () => ({ alergias: [], alergiaOtra: "" })));
+		Array<{ name: string; allergies: string[]; otherAllergy: string }>
+	>(() =>
+		Array.from({ length: 5 }, () => ({
+			name: "",
+			allergies: [],
+			otherAllergy: "",
+		})),
+	);
 
-	const totalGuests = extrasCount + 1;
+	const totalGuests = extraGuestsCount + 1;
 
 	const allValid = guests
 		.slice(0, totalGuests)
-		.every((g) => !g.alergias.includes("otra") || g.alergiaOtra.trim() !== "");
+		.every(
+			(g, i) =>
+				(i === 0 || g.name.trim() !== "") &&
+				(!g.allergies.includes("otra") || g.otherAllergy.trim() !== ""),
+		);
 
 	const canSubmit =
 		accepted &&
-		fields.nombre.trim() !== "" &&
-		fields.apellido.trim() !== "" &&
+		fields.firstName.trim() !== "" &&
+		fields.lastName.trim() !== "" &&
 		fields.email.trim() !== "" &&
-		fields.celular.trim() !== "" &&
+		fields.phone.trim() !== "" &&
 		allValid;
 
-	const toggleGuestAlergia = useCallback((guestIdx: number, key: string) =>
-		setGuests((prev) =>
-			prev.map((g, i) =>
-				i !== guestIdx
-					? g
-					: {
-							...g,
-							alergias: g.alergias.includes(key)
-								? g.alergias.filter((k) => k !== key)
-								: [...g.alergias, key],
-						},
+	const toggleGuestAllergy = useCallback(
+		(guestIdx: number, key: string) =>
+			setGuests((prev) =>
+				prev.map((g, i) =>
+					i !== guestIdx
+						? g
+						: {
+								...g,
+								allergies: g.allergies.includes(key)
+									? g.allergies.filter((k) => k !== key)
+									: [...g.allergies, key],
+							},
+				),
 			),
-		), []);
+		[],
+	);
 
-	const setGuestAlergiaOtra = useCallback((guestIdx: number, value: string) =>
-		setGuests((prev) =>
-			prev.map((g, i) => (i !== guestIdx ? g : { ...g, alergiaOtra: value })),
-		), []);
+	const setGuestOtherAllergy = useCallback(
+		(guestIdx: number, value: string) =>
+			setGuests((prev) =>
+				prev.map((g, i) =>
+					i !== guestIdx ? g : { ...g, otherAllergy: value },
+				),
+			),
+		[],
+	);
+
+	const setGuestName = useCallback(
+		(guestIdx: number, value: string) =>
+			setGuests((prev) =>
+				prev.map((g, i) => (i !== guestIdx ? g : { ...g, name: value })),
+			),
+		[],
+	);
 
 	const handleField =
 		(key: keyof typeof fields) =>
 		(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
 			setFields((prev) => ({ ...prev, [key]: e.target.value }));
 
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (!canSubmit || isPending) return;
+		const honeypot =
+			(e.currentTarget.elements.namedItem("website") as HTMLInputElement)
+				?.value ?? "";
+
+		setSubmitError(false);
+		startTransition(async () => {
+			const result = await submitBooking({
+				firstName: fields.firstName,
+				lastName: fields.lastName,
+				email: fields.email,
+				phone: fields.phone,
+				guests: guests.slice(0, totalGuests).map((g, i) => ({
+					name:
+						i === 0
+							? `${fields.firstName} ${fields.lastName}`
+							: g.name,
+					allergies: g.allergies,
+					otherAllergy: g.otherAllergy,
+				})),
+				honeypot,
+			});
+			if (result.ok) {
+				setSubmitted(true);
+			} else {
+				setSubmitError(true);
+			}
+		});
+	};
+
 	return (
-		<section
-			id="reserva"
-			className="bg-sand px-6 py-16 sm:py-20 paper-grain"
-		>
+		<section id="reserva" className="bg-sand px-6 py-16 sm:py-20 paper-grain">
 			<div className="mx-auto max-w-205 flex flex-col items-center gap-8 text-center">
 				<Eyebrow withDiamond>{dict.eyebrow}</Eyebrow>
 
@@ -96,46 +154,53 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 					</div>
 				) : (
 					<form
-						onSubmit={(e) => {
-							e.preventDefault();
-							setSubmitted(true);
-						}}
+						onSubmit={handleSubmit}
 						className="mt-6 w-full text-left"
 						noValidate
 					>
+						{/* Honeypot — hidden from real users, catches bots that fill all fields */}
+						<input
+							type="text"
+							name="website"
+							tabIndex={-1}
+							autoComplete="off"
+							aria-hidden="true"
+							style={{ display: "none" }}
+						/>
+
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
 							<div>
-								<label className="field-label" htmlFor="nombre">
+								<label className="field-label" htmlFor="firstName">
 									{dict.fields.nombre}{" "}
 									<span className="req">{dict.fields.required}</span>
 								</label>
 								<input
-									id="nombre"
-									name="nombre"
+									id="firstName"
+									name="firstName"
 									type="text"
 									required
 									autoComplete="given-name"
 									placeholder={dict.placeholders.nombre}
 									className="field"
-									value={fields.nombre}
-									onChange={handleField("nombre")}
+									value={fields.firstName}
+									onChange={handleField("firstName")}
 								/>
 							</div>
 							<div>
-								<label className="field-label" htmlFor="apellido">
+								<label className="field-label" htmlFor="lastName">
 									{dict.fields.apellido}{" "}
 									<span className="req">{dict.fields.required}</span>
 								</label>
 								<input
-									id="apellido"
-									name="apellido"
+									id="lastName"
+									name="lastName"
 									type="text"
 									required
 									autoComplete="family-name"
 									placeholder={dict.placeholders.apellido}
 									className="field"
-									value={fields.apellido}
-									onChange={handleField("apellido")}
+									value={fields.lastName}
+									onChange={handleField("lastName")}
 								/>
 							</div>
 
@@ -158,33 +223,35 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 							</div>
 
 							<div className="sm:col-span-2">
-								<label className="field-label" htmlFor="celular">
+								<label className="field-label" htmlFor="phone">
 									{dict.fields.celular}{" "}
 									<span className="req">{dict.fields.required}</span>
 								</label>
 								<input
-									id="celular"
-									name="celular"
+									id="phone"
+									name="phone"
 									type="tel"
 									required
 									inputMode="tel"
 									autoComplete="tel"
 									placeholder={dict.placeholders.celular}
 									className="field"
-									value={fields.celular}
-									onChange={handleField("celular")}
+									value={fields.phone}
+									onChange={handleField("phone")}
 								/>
 							</div>
 
 							<div className="sm:col-span-2">
-								<label className="field-label" htmlFor="extras">
+								<label className="field-label" htmlFor="extraGuests">
 									{dict.fields.extras}
 								</label>
 								<select
-									id="extras"
-									name="extras"
-									value={String(extrasCount)}
-									onChange={(e) => setExtrasCount(Number(e.target.value))}
+									id="extraGuests"
+									name="extraGuests"
+									value={String(extraGuestsCount)}
+									onChange={(e) =>
+										setExtraGuestsCount(Number(e.target.value))
+									}
 									className="field appearance-none"
 									style={SELECT_STYLE}
 								>
@@ -213,7 +280,29 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 												aria-hidden
 											/>
 										</summary>
-										<div className="px-4 pb-4 pt-1">
+										<div className="px-4 pb-4 pt-1 flex flex-col gap-3">
+											{i > 0 && (
+												<div>
+													<label
+														className="field-label"
+														htmlFor={`guest-name-${i}`}
+													>
+														{dict.fields.guestName}{" "}
+														<span className="req">
+															{dict.fields.required}
+														</span>
+													</label>
+													<input
+														id={`guest-name-${i}`}
+														type="text"
+														placeholder={dict.placeholders.guestName}
+														className="field"
+														value={guest.name}
+														onChange={(e) => setGuestName(i, e.target.value)}
+														required
+													/>
+												</div>
+											)}
 											<div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
 												{(
 													Object.entries(dict.alergiaOptions) as [
@@ -227,24 +316,24 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 													>
 														<input
 															type="checkbox"
-															name={`alergia-${i}`}
+															name={`allergy-${i}`}
 															value={key}
-															checked={guest.alergias.includes(key)}
-															onChange={() => toggleGuestAlergia(i, key)}
+															checked={guest.allergies.includes(key)}
+															onChange={() => toggleGuestAllergy(i, key)}
 															className="w-4 h-4 shrink-0 accent-amber"
 														/>
 														{label}
 													</label>
 												))}
 											</div>
-											{guest.alergias.includes("otra") && (
+											{guest.allergies.includes("otra") && (
 												<input
 													type="text"
 													placeholder={dict.fields.alergiaOtra}
 													className="field mt-3"
-													value={guest.alergiaOtra}
+													value={guest.otherAllergy}
 													onChange={(e) =>
-														setGuestAlergiaOtra(i, e.target.value)
+														setGuestOtherAllergy(i, e.target.value)
 													}
 												/>
 											)}
@@ -273,12 +362,18 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 								</span>
 							</label>
 
+							{submitError && (
+								<p className="sm:col-span-2 text-sm text-red-600 text-center">
+									{dict.submitError}
+								</p>
+							)}
+
 							<button
 								type="submit"
-								disabled={!canSubmit}
+								disabled={!canSubmit || isPending}
 								className="sm:col-span-2 mt-4 w-full inline-flex items-center justify-center rounded-full bg-dark hover:bg-[#1f190f] disabled:bg-dark/30 disabled:text-dark/40 disabled:cursor-not-allowed text-amber text-[0.78rem] sm:text-[0.85rem] tracking-[0.22em] uppercase font-semibold px-10 py-5 transition-colors"
 							>
-								{dict.submit}
+								{isPending ? dict.submitting : dict.submit}
 							</button>
 						</div>
 					</form>
