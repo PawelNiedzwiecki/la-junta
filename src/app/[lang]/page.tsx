@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getMenuUrl } from "@/app/actions/getMenuUrl";
 import BookingForm from "@/components/forms/BookingForm";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
@@ -18,7 +19,10 @@ export default async function Home({
 }) {
 	const { lang } = await params;
 	if (!hasLocale(lang)) notFound();
-	const dict = await getDictionary(lang);
+	const [dict, menuUrl] = await Promise.all([
+		getDictionary(lang),
+		getMenuUrl(),
+	]);
 
 	return (
 		<>
@@ -28,7 +32,7 @@ export default async function Home({
 				<History dict={dict.historia} />
 				<Kitchen dict={dict.cocina} />
 				<Community dict={dict.comunidad} />
-				<MenuCard dict={dict.menuCard} />
+				<MenuCard dict={dict.menuCard} menuUrl={menuUrl} />
 				<Process dict={dict.proceso} />
 				<BookingForm dict={dict.reserva} />
 				<Faq dict={dict.faq} />

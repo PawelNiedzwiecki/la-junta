@@ -7,7 +7,10 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
-export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
+export default function MenuCard({
+	dict,
+	menuUrl,
+}: { dict: DictType["menuCard"]; menuUrl: string | null }) {
 	return (
 		<section
 			id="menu"
@@ -95,15 +98,17 @@ export default function MenuCard({ dict }: { dict: DictType["menuCard"] }) {
 
 						<div className="w-16 border-t border-amber/20" />
 
-						<a
-							href="/menu/menu_may.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex items-center justify-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.78rem] sm:text-[0.82rem] tracking-[0.2em] uppercase font-medium px-8 sm:px-10 py-4 transition-colors"
-						>
-							{dict.ctaPrimary}
-							<span aria-hidden>→</span>
-						</a>
+						{menuUrl && (
+							<a
+								href={menuUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center justify-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.78rem] sm:text-[0.82rem] tracking-[0.2em] uppercase font-medium px-8 sm:px-10 py-4 transition-colors"
+							>
+								{dict.ctaPrimary}
+								<span aria-hidden>→</span>
+							</a>
+						)}
 
 						<a
 							href="#reserva"
