@@ -5,7 +5,7 @@ export default function Faq({ dict }: { dict: DictType["faq"] }) {
 	return (
 		<section
 			id="faq"
-			className="relative bg-cream paper-grain px-6 py-24 sm:py-28"
+			className="relative bg-cream paper-grain px-6 py-16 sm:py-20"
 		>
 			<div className="mx-auto max-w-215 flex flex-col items-center gap-10">
 				<SectionHeader

@@ -29,7 +29,7 @@ export default function Navbar({
 						href="#top"
 						className="text-[2rem] tracking-tight leading-none font-bold"
 					>
-						<span className="text-white">La </span>
+						<span className="text-cream font-extralight">La </span>
 						<span className="text-amber">Junta</span>
 					</Link>
 					<p className="italic text-cream/70 text-[0.85rem]">{dict.tagline}</p>
@@ -40,12 +40,12 @@ export default function Navbar({
 					<LangSwitcher
 						currentLang={lang}
 						label={dict.switchLabel}
-						className="w-30 text-cream/60 hover:text-amber text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
+						className="w-30 text-cream/60 hover:text-cream text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
 					/>
 					<nav className="flex-1 flex items-center justify-center gap-x-7 text-[0.82rem] tracking-wide text-cream/85">
 						{navLinks.map((l, i) => (
 							<span key={l.href} className="flex items-center gap-x-7">
-								<a href={l.href} className="hover:text-amber transition-colors">
+								<a href={l.href} className="hover:text-cream transition-colors">
 									{l.label}
 								</a>
 								{i < navLinks.length - 1 && (
@@ -91,7 +91,7 @@ export default function Navbar({
 							<a
 								key={l.href}
 								href={l.href}
-								className="px-1 py-2.5 text-[0.95rem] text-cream/85 hover:text-amber transition-colors"
+								className="px-1 py-2.5 text-[0.95rem] text-cream/85 hover:text-cream transition-colors"
 							>
 								{l.label}
 							</a>
@@ -100,7 +100,7 @@ export default function Navbar({
 							<LangSwitcher
 								currentLang={lang}
 								label={dict.switchLabel}
-								className="text-cream/60 hover:text-amber text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
+								className="text-cream/60 hover:text-cream text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
 							/>
 							<a
 								href="/menu/menu_may.pdf"

@@ -1,12 +1,12 @@
-import { Wine, DiamondsFour } from "@phosphor-icons/react/dist/ssr";
-import SectionHeader from "../ui/SectionHeader";
+import { DiamondsFour, Wine } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
+import SectionHeader from "../ui/SectionHeader";
 
 export default function Process({ dict }: { dict: DictType["proceso"] }) {
 	return (
 		<section
 			id="proceso"
-			className="relative bg-cream paper-grain px-6 py-20 sm:py-28"
+			className="relative bg-cream paper-grain px-6 py-14 sm:py-20"
 		>
 			<div className="mx-auto max-w-xl flex flex-col items-center gap-12">
 				<SectionHeader eyebrow={dict.eyebrow} heading={<>{dict.heading}</>} />
@@ -23,7 +23,9 @@ export default function Process({ dict }: { dict: DictType["proceso"] }) {
 										{i + 1}
 									</span>
 									<div className="relative z-10 w-8 h-8 rounded-full bg-amber flex items-center justify-center shadow-[0_6px_16px_-4px_rgba(139,94,60,0.45)]">
-										<span className="text-cream text-xs font-bold">{i + 1}</span>
+										<span className="text-cream text-xs font-bold">
+											{i + 1}
+										</span>
 									</div>
 								</div>
 								<div className="pt-1">
@@ -43,13 +45,23 @@ export default function Process({ dict }: { dict: DictType["proceso"] }) {
 				</ol>
 
 				<div className="hairline-amber hairline w-full max-w-xs">
-					<DiamondsFour size={14} weight="duotone" className="text-amber" aria-hidden />
+					<DiamondsFour
+						size={14}
+						weight="duotone"
+						className="text-amber"
+						aria-hidden
+					/>
 				</div>
 
 				<div className="w-full bg-dark-card rounded-2xl px-6 py-8 flex flex-col gap-4">
 					<div className="flex items-center gap-3">
-						<div className="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center flex-shrink-0">
-							<Wine size={16} weight="duotone" className="text-amber" aria-hidden />
+						<div className="w-8 h-8 rounded-full bg-amber flex items-center justify-center shrink-0">
+							<Wine
+								size={16}
+								weight="duotone"
+								className="text-cream"
+								aria-hidden
+							/>
 						</div>
 						<h3 className="text-lg font-semibold text-cream">
 							{dict.finalTitle}

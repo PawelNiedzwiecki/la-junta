@@ -68,7 +68,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 	return (
 		<section
 			id="reserva"
-			className="bg-sand px-6 py-24 sm:py-28 paper-grain"
+			className="bg-sand px-6 py-16 sm:py-20 paper-grain"
 		>
 			<div className="mx-auto max-w-205 flex flex-col items-center gap-8 text-center">
 				<Eyebrow withDiamond>{dict.eyebrow}</Eyebrow>
@@ -202,7 +202,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									<details
 										key={i}
 										open
-										className="rounded-lg border border-dark/10 bg-cream/40"
+										className="rounded-lg border border-dark/15 bg-[#f0e6d3]"
 									>
 										<summary className="flex items-center justify-between gap-3 px-4 py-3 text-[0.85rem] font-medium text-dark cursor-pointer select-none">
 											{i === 0
@@ -265,7 +265,7 @@ export default function ReservaForm({ dict }: { dict: DictType["reserva"] }) {
 									{dict.consent.pre}
 									<a
 										href="#faq"
-										className="text-amber underline underline-offset-2"
+										className="text-dark hover:text-amber underline underline-offset-2 transition-colors"
 									>
 										{dict.consent.linkLabel}
 									</a>

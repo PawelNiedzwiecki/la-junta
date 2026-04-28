@@ -24,40 +24,34 @@
 	"historia": {
 		"eyebrow": "Nuestra Historia",
 		"heading": "Desde el campo de flores bordado…",
-		"caption": "Una mesa larga, vino y los nuestros · santiago / londres",
-		"p1": "Crecimos entre manteles bordados con flores, ollas que hervían despacio toda la tarde y conversaciones que se quedaban hasta que el último vaso de tinto se vaciaba. La mesa nunca fue solo mesa: era el lugar donde se contaban los días, se reían las penas y se recibía a quien llegara con hambre o con noticias.",
-		"p2": "Hoy, a miles de kilómetros, esa costumbre nos sigue. Trajimos a Londres el sabor del campo, la ciudad y la costa, y los pusimos sobre un mismo mantel para compartirlos con quien quiera sentarse con nosotros.",
-		"p3Emphasis": "…hasta nuestra londinense cocina.",
-		"p3Tail": " Cocinamos con paciencia, con memoria, y con eso que se hereda más que se aprende: el gesto de quien sirve un plato pensando en el que lo va a recibir."
+		"p1": "Crecimos entre manteles bordados con flores, ollas que hervían despacio toda la tarde y conversaciones que se quedaban hasta que el último vaso de tinto se vaciaba. La mesa nunca fue solo una mesa era el lugar donde se contaban los días, se reían las penas y se llenaba el corazón, porque guatita llena corazón contento.",
+		"p2": "Hoy, a miles de kilómetros, esa costumbre nos sigue. Trajimos a Londres el sabor del campo, la ciudad y la costa, y los pusimos sobre un mismo mantel para compartirlos con quien quiera sentarse con nosotros."
 	},
 	"cocina": {
 		"eyebrow": "Nuestra Cocina",
 		"heading": "Hasta nuestra londinense cocina",
-		"caption": "Mesón rústico · cobre, pizarra y producto fresco",
-		"p1": "Recogemos sabores de la costa al campo: pescados que recuerdan al mar de Valparaíso, hierbas de huerta, choclo cocido despacio, ajíes que despiertan la mesa. Buscamos el ingrediente más humilde y le damos el lugar de honor.",
-		"p2": "Cada plato es una historia chica que cuenta una grande: la del país que se cocina entero en una olla. No queremos sorprender con artificios, queremos volver a ese sabor que uno reconoce sin saber por qué — el de la cocina de la abuela, el del puesto de la feria, el del fogón de domingo.",
-		"p3": "En lo simple está la belleza."
+		"p1": "Nuestra cocina es un viaje de vuelta a casa. Buscamos ingredientes  desde la costa hasta el campo para recrear esos sabores que guardamos en nuestra memoria y darles un lugar de honor.",
+		"p2": "Cada plato es una historia que rememora nuestra variada cultura. No queremos sorprender con artificios, queremos volver a ese sabor sencillo para recordar que en lo simple está la belleza."
 	},
 	"comunidad": {
 		"eyebrow": "La Comunidad",
 		"heading": "Quiénes somos",
-		"caption": "Alrededor de la mesa · los nuestros · londres",
-		"p1": "Somos un par de chilenos en Londres a los que, después de varios inviernos largos, empezó a faltarnos algo difícil de explicar: esa costumbre nuestra de juntarnos a comer sin motivo, de poner otro plato si llegaba alguien, de quedarse hasta tarde conversando porque la sobremesa también es parte de la receta.",
+		"p1": "Somos un par de Chilenos que empezarón a extrañar esa mezcla de comida casera mezclada con la buena sobremesa Chilena. Así nació la Junta, un club que se repite mes a mes alrededor de una buena mesa al estilo Chileno, donde la comida Chilena es la excusa para juntarnos y la comunidad es el real plato principal.",
 		"p2Pre": "Así nació ",
 		"p2Emphasis": "La Junta",
 		"p2Post": ": un supper club que se repite mes a mes, una mesa larga abierta a quien quiera sentarse, donde la comida chilena es la excusa y la comunidad, el plato principal."
 	},
 	"menuCard": {
 		"eyebrow": "Nuestro Menú",
-		"heading": "La junta del 9 de Mayo ya se está cocinando",
+		"heading": "La junta del 16 de Mayo ya se está cocinando",
 		"time": "14:00",
 		"location": "cerca de London Bridge",
 		"reminder": "recuerda elegir tu opción de menú",
 		"descriptionLabel": "¿Qué nos trae este mes?",
-		"description": "un pisco sour de bienvenida, sabores de costa y campo en un mismo plato, choclo cocinado despacio sobre brasa, hierbas criollas, vino tinto y un postre que sabe a domingo. Una mesa larga, una tarde lenta, y todo el tiempo del mundo para conversar.",
+		"description": "Partimos con el abrazo cítrico del Pisco Sauer, para luego dejarnos llevar entre el mar y la huerta. Fuego lento, maíz molido a la usanza criolla y hierbas del campo, hasta llegar a la dulzura más chilena que existe.",
 		"ctaPrimary": "Revisa nuestra mesa de Mayo",
 		"ctaSecondary": "¿Te apuntas?",
-		"dateDay": "9",
+		"dateDay": "16",
 		"dateMonthShort": "MAY",
 		"dateMonthLong": "Mayo"
 	},
@@ -86,7 +80,7 @@
 	},
 	"reserva": {
 		"eyebrow": "Únete",
-		"heading": "Reserva tu lugar para el 6 de Mayo",
+		"heading": "Reserva tu lugar para el 16 de Mayo",
 		"subtext": "Compártenos tu información para asistir a la próxima junta.",
 		"fields": {
 			"nombre": "Nombre",

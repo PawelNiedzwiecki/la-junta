@@ -13,7 +13,7 @@ export default function Hero({ dict }: { dict: DictType["hero"] }) {
 				<Eyebrow className="mb-6">{dict.eyebrow}</Eyebrow>
 
 				<h1 className="tracking-tight leading-none mb-2 text-[3rem] sm:text-[4.5rem] md:text-[6rem]">
-					<span className="text-dark/40 font-extralight">La </span>
+					<span className="text-dark font-extralight">La </span>
 					<span className="text-amber font-bold">Junta</span>
 				</h1>
 

@@ -24,167 +24,162 @@
 	"historia": {
 		"eyebrow": "Our Story",
 		"heading": "From the field of embroidered flowers…",
-		"caption": "A long table, wine, and our people · santiago / london",
 		"p1": "We grew up among flower-embroidered tablecloths, pots that simmered slowly all afternoon, and conversations that lingered until the last glass of red was empty. The table was never just a table: it was the place where days were recounted, sorrows were laughed away, and anyone who arrived hungry or with news was welcomed.",
-		"p2": "Today, thousands of miles away, that habit follows us still. We brought to London the flavours of the countryside, the city, and the coast, and laid them on a shared tablecloth for anyone who wants to sit with us.",
-		"p3Emphasis": "…all the way to our London kitchen.",
-		"p3Tail": " We cook with patience, with memory, and with something that is inherited more than learned: the gesture of someone who plates a dish thinking of the person who will receive it."
+		"p2": "Today, thousands of miles away, that habit follows us still. We brought to London the flavours of the countryside, the city, and the coast, and laid them on a shared tablecloth for anyone who wants to sit with us."
 	},
 	"cocina": {
-		"eyebrow": "Our Kitchen",
-		"heading": "All the way to our London kitchen",
-		"caption": "Rustic counter · copper, slate, and fresh produce",
-		"p1": "We gather flavours from coast to countryside: fish that recalls the sea of Valparaíso, garden herbs, slow-cooked corn, chillies that wake the table. We take the humblest ingredient and give it the place of honour.",
-		"p2": "Every dish is a small story that tells a bigger one: that of a country cooked whole in a single pot. We don't want to surprise with tricks — we want to return to that flavour you recognise without knowing why: the one from your grandmother's kitchen, the market stall, the Sunday fire.",
-		"p3": "In simplicity lies beauty."
-	},
-	"comunidad": {
-		"eyebrow": "The Community",
-		"heading": "Who we are",
-		"caption": "Around the table · our people · london",
-		"p1": "We are a couple of Chileans in London who, after several long winters, began to miss something hard to explain: our custom of gathering to eat for no reason, of setting another plate if someone arrived, of staying late talking because the after-dinner conversation is also part of the recipe.",
-		"p2Pre": "That is how ",
-		"p2Emphasis": "La Junta",
-		"p2Post": " was born: a supper club that repeats month after month, a long table open to anyone who wants to sit down, where Chilean food is the excuse and community is the main course."
-	},
-	"menuCard": {
-		"eyebrow": "Our Menu",
-		"heading": "The 9th of May gathering is already being cooked",
-		"time": "14:00",
-		"location": "near London Bridge",
-		"reminder": "remember to choose your menu option",
-		"descriptionLabel": "What's on this month?",
-		"description": "a welcome pisco sour, coast and countryside flavours on the same plate, corn slow-cooked over embers, creole herbs, red wine, and a dessert that tastes like Sunday. A long table, a slow afternoon, and all the time in the world to talk.",
-		"ctaPrimary": "See our May menu",
-		"ctaSecondary": "Are you in?",
-		"dateDay": "9",
-		"dateMonthShort": "MAY",
-		"dateMonthLong": "May"
-	},
-	"ctaBanner": {
-		"cta": "Reserve your seat"
-	},
-	"proceso": {
-		"eyebrow": "The Process",
-		"heading": "How it works",
-		"steps": [
-			{
-				"title": "Sign up",
-				"body": "Each month you receive the menu, date, and venue so you can come prepared and plan your schedule."
-			},
-			{
-				"title": "Reserve your seat",
-				"body": "Secure your place at the table: spots fill up fast. You'll receive an email confirming your reservation."
-			},
-			{
-				"title": "We confirm the menu",
-				"body": "You choose between 2 menu options directly from the confirmation email, then complete payment."
-			}
-		],
-		"finalTitle": "Arrive and enjoy",
-		"finalBody": "Come hungry, ready to share, and with time to linger. We take care of everything else."
-	},
-	"reserva": {
-		"eyebrow": "Join us",
-		"heading": "Reserve your seat for the 6th of May",
-		"subtext": "Share your details to attend the next gathering.",
-		"fields": {
-			"nombre": "First name",
-			"apellido": "Last name",
-			"email": "Email",
-			"celular": "Phone",
-			"alergiaHeading": "Food allergies",
-			"alergiaYo": "Me",
-			"alergiaOtra": "Specify your allergy",
-			"guestLabel": "Guest",
-			"extras": "Would you like to register more people?",
-			"required": "(Required)"
+			"eyebrow": "Our Kitchen",
+			"heading": "All the way to our London kitchen",
+			"p1": "We gather flavours from coast to countryside: fish that recalls the sea of Valparaíso, garden herbs, slow-cooked corn, chillies that wake the table. We take the humblest ingredient and give it the place of honour.",
+			"p2": "Every dish is a small story that tells a bigger one: that of a country cooked whole in a single pot. We don't want to surprise with tricks — we want to return to that flavour you recognise without knowing why: the one from your grandmother's kitchen, the market stall, the Sunday fire.",
+			"p3": "In simplicity lies beauty."
 		},
-		"placeholders": {
-			"nombre": "Your first name",
-			"apellido": "Your last name",
-			"email": "you@email.com",
-			"celular": "+44 7700 900 000"
+		"comunidad": {
+			"eyebrow": "The Community",
+			"heading": "Who we are",
+			"p1": "We are a couple of Chileans in London who, after several long winters, began to miss something hard to explain: our custom of gathering to eat for no reason, of setting another plate if someone arrived, of staying late talking because the after-dinner conversation is also part of the recipe.",
+			"p2Pre": "That is how ",
+			"p2Emphasis": "La Junta",
+			"p2Post": " was born: a supper club that repeats month after month, a long table open to anyone who wants to sit down, where Chilean food is the excuse and community is the main course."
 		},
-		"alergiaOptions": {
-			"apio": "Celery",
-			"cerealesGluten": "Cereals containing gluten",
-			"crustaceos": "Crustaceans",
-			"huevos": "Eggs",
-			"pescado": "Fish",
-			"altramuz": "Lupin",
-			"leche": "Milk",
-			"moluscos": "Molluscs",
-			"cacahuetes": "Peanuts",
-			"sesamo": "Sesame",
-			"soja": "Soybeans",
-			"sulfitos": "Sulphur dioxide and sulphites",
-			"frutosSecos": "Tree nuts",
-			"mostaza": "Mustard",
-			"otra": "Other"
+		"menuCard": {
+			"eyebrow": "Our Menu",
+			"heading": "The 9th of May gathering is already being cooked",
+			"time": "14:00",
+			"location": "near London Bridge",
+			"reminder": "remember to choose your menu option",
+			"descriptionLabel": "What's on this month?",
+			"description": "a welcome pisco sour, coast and countryside flavours on the same plate, corn slow-cooked over embers, creole herbs, red wine, and a dessert that tastes like Sunday. A long table, a slow afternoon, and all the time in the world to talk.",
+			"ctaPrimary": "See our May menu",
+			"ctaSecondary": "Are you in?",
+			"dateDay": "9",
+			"dateMonthShort": "MAY",
+			"dateMonthLong": "May"
 		},
-		"extrasOptions": {
-			"solo": "No, just me",
-			"mas1": "Yes, 1 more person",
-			"mas2": "Yes, 2 more people",
-			"mas3": "Yes, 3 more people",
-			"mas4": "Yes, 4 more people"
+		"ctaBanner": {
+			"cta": "Reserve your seat"
 		},
-		"consent": {
-			"pre": "I accept the ",
-			"linkLabel": "cancellation policy",
-			"post": " and authorise La Junta to contact me with details about the menu, date, and event location."
+		"proceso": {
+			"eyebrow": "The Process",
+			"heading": "How it works",
+			"steps": [
+				{
+					"title": "Sign up",
+					"body": "Each month you receive the menu, date, and venue so you can come prepared and plan your schedule."
+				},
+				{
+					"title": "Reserve your seat",
+					"body": "Secure your place at the table: spots fill up fast. You'll receive an email confirming your reservation."
+				},
+				{
+					"title": "We confirm the menu",
+					"body": "You choose between 2 menu options directly from the confirmation email, then complete payment."
+				}
+			],
+			"finalTitle": "Arrive and enjoy",
+			"finalBody": "Come hungry, ready to share, and with time to linger. We take care of everything else."
 		},
-		"submit": "Submit details",
-		"successTitle": "Thank you!",
-		"successBody": "We have received your details. We will send you a confirmation email with the menu options shortly."
-	},
-	"faq": {
-		"eyebrow": "Information",
-		"heading": "Policies and frequently asked questions",
-		"items": [
-			{
-				"q": "How much does a ticket cost and where is it held?",
-				"a": "Each gathering ticket is £65 per person and includes the full menu (starter, main, dessert) plus a welcome cocktail. Events are held at a venue near London Bridge — the exact address is shared in the confirmation email once payment is complete."
+		"reserva": {
+			"eyebrow": "Join us",
+			"heading": "Reserve your seat for the 6th of May",
+			"subtext": "Share your details to attend the next gathering.",
+			"fields": {
+				"nombre": "First name",
+				"apellido": "Last name",
+				"email": "Email",
+				"celular": "Phone",
+				"alergiaHeading": "Food allergies",
+				"alergiaYo": "Me",
+				"alergiaOtra": "Specify your allergy",
+				"guestLabel": "Guest",
+				"extras": "Would you like to register more people?",
+				"required": "(Required)"
 			},
-			{
-				"q": "Do I have to be Chilean to attend?",
-				"a": "Not at all. La Junta is open to anyone who wants to sit at the table. All we ask is a willingness to share, talk, and be surprised by Chilean food."
+			"placeholders": {
+				"nombre": "Your first name",
+				"apellido": "Your last name",
+				"email": "you@email.com",
+				"celular": "+44 7700 900 000"
 			},
-			{
-				"q": "What kind of dishes do you serve?",
-				"a": "Chilean food made in London, with nods to coast, countryside, and city. Empanadas, fish, slow stews, corn, creole herbs, and lifelong desserts. The menu changes each month with the season."
+			"alergiaOptions": {
+				"apio": "Celery",
+				"cerealesGluten": "Cereals containing gluten",
+				"crustaceos": "Crustaceans",
+				"huevos": "Eggs",
+				"pescado": "Fish",
+				"altramuz": "Lupin",
+				"leche": "Milk",
+				"moluscos": "Molluscs",
+				"cacahuetes": "Peanuts",
+				"sesamo": "Sesame",
+				"soja": "Soybeans",
+				"sulfitos": "Sulphur dioxide and sulphites",
+				"frutosSecos": "Tree nuts",
+				"mostaza": "Mustard",
+				"otra": "Other"
 			},
-			{
-				"q": "What does the menu include?",
-				"a": "Each gathering's menu is published in the confirmation email, with two options to choose from (one always with a vegetarian alternative). It usually includes a starter, main, and dessert."
+			"extrasOptions": {
+				"solo": "No, just me",
+				"mas1": "Yes, 1 more person",
+				"mas2": "Yes, 2 more people",
+				"mas3": "Yes, 3 more people",
+				"mas4": "Yes, 4 more people"
 			},
-			{
-				"q": "What drinks are included in the menu?",
-				"a": "Each gathering includes a welcome pisco sour and a glass of Chilean wine selected to accompany the main course. Still water and non-alcoholic options are also included."
+			"consent": {
+				"pre": "I accept the ",
+				"linkLabel": "cancellation policy",
+				"post": " and authorise La Junta to contact me with details about the menu, date, and event location."
 			},
-			{
-				"q": "What if I want more than one glass of wine?",
-				"a": "We will have additional bottles available for those who want to keep going. These are paid for on the spot, directly at the table."
-			},
-			{
-				"q": "Do you have vegetarian or gluten-free options?",
-				"a": "Yes. We always offer at least one vegetarian option and can adapt the menu to a gluten-free diet if you let us know in advance when reserving."
-			},
-			{
-				"q": "What happens if I have food allergies?",
-				"a": "Let us know in the reservation form and we will confirm by email what adaptations we can make. If the allergy is severe, we will be transparent with you about our shared kitchen."
-			},
-			{
-				"q": "How often do you hold events?",
-				"a": "Once a month, usually on a Saturday or Sunday afternoon. You can subscribe to receive dates in advance."
-			},
-			{
-				"q": "Can I cancel once I have reserved and paid?",
-				"a": "We accept cancellations with a full refund up to 7 days before the event. After that date, we can transfer your spot to another person or to the next gathering, subject to availability."
-			}
-		]
-	},
+			"submit": "Submit details",
+			"successTitle": "Thank you!",
+			"successBody": "We have received your details. We will send you a confirmation email with the menu options shortly."
+		},
+		"faq": {
+			"eyebrow": "Information",
+			"heading": "Policies and frequently asked questions",
+			"items": [
+				{
+					"q": "How much does a ticket cost and where is it held?",
+					"a": "Each gathering ticket is £65 per person and includes the full menu (starter, main, dessert) plus a welcome cocktail. Events are held at a venue near London Bridge — the exact address is shared in the confirmation email once payment is complete."
+				},
+				{
+					"q": "Do I have to be Chilean to attend?",
+					"a": "Not at all. La Junta is open to anyone who wants to sit at the table. All we ask is a willingness to share, talk, and be surprised by Chilean food."
+				},
+				{
+					"q": "What kind of dishes do you serve?",
+					"a": "Chilean food made in London, with nods to coast, countryside, and city. Empanadas, fish, slow stews, corn, creole herbs, and lifelong desserts. The menu changes each month with the season."
+				},
+				{
+					"q": "What does the menu include?",
+					"a": "Each gathering's menu is published in the confirmation email, with two options to choose from (one always with a vegetarian alternative). It usually includes a starter, main, and dessert."
+				},
+				{
+					"q": "What drinks are included in the menu?",
+					"a": "Each gathering includes a welcome pisco sour and a glass of Chilean wine selected to accompany the main course. Still water and non-alcoholic options are also included."
+				},
+				{
+					"q": "What if I want more than one glass of wine?",
+					"a": "We will have additional bottles available for those who want to keep going. These are paid for on the spot, directly at the table."
+				},
+				{
+					"q": "Do you have vegetarian or gluten-free options?",
+					"a": "Yes. We always offer at least one vegetarian option and can adapt the menu to a gluten-free diet if you let us know in advance when reserving."
+				},
+				{
+					"q": "What happens if I have food allergies?",
+					"a": "Let us know in the reservation form and we will confirm by email what adaptations we can make. If the allergy is severe, we will be transparent with you about our shared kitchen."
+				},
+				{
+					"q": "How often do you hold events?",
+					"a": "Once a month, usually on a Saturday or Sunday afternoon. You can subscribe to receive dates in advance."
+				},
+				{
+					"q": "Can I cancel once I have reserved and paid?",
+					"a": "We accept cancellations with a full refund up to 7 days before the event. After that date, we can transfer your spot to another person or to the next gathering, subject to availability."
+				}
+			]
+		},
 	"footer": {
 		"tagline": "Every gathering a journey home and back",
 		"location": "London"
