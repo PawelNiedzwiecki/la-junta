@@ -1,11 +1,34 @@
 "use client";
 
 import {
+	ArrowCounterClockwiseIcon,
 	DiamondsFourIcon,
 	FilePdfIcon,
 	UploadSimpleIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+type HistoryEntry = {
+	url: string;
+	pathname: string;
+	uploadedAt: string;
+};
+
+function filename(pathname: string) {
+	const parts = pathname.split("/").pop() ?? pathname;
+	// strip leading timestamp prefix: 2026-04-29T12-34-56-789Z-
+	return parts.replace(/^\d{4}-\d{2}-\d{2}T[\d-]+Z-/, "");
+}
+
+function formatDate(iso: string) {
+	return new Date(iso).toLocaleString("en-GB", {
+		day: "numeric",
+		month: "short",
+		year: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+	});
+}
 
 export default function AdminMenuPage() {
 	const [password, setPassword] = useState("");
@@ -15,7 +38,30 @@ export default function AdminMenuPage() {
 	const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 	const [dragOver, setDragOver] = useState(false);
 	const [fileName, setFileName] = useState<string | null>(null);
+	const [history, setHistory] = useState<HistoryEntry[]>([]);
+	const [restoringUrl, setRestoringUrl] = useState<string | null>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	async function fetchHistory(pw: string) {
+		if (!pw) return;
+		const res = await fetch("/api/menu", {
+			headers: { "x-admin-password": pw },
+		});
+		if (!res.ok) return;
+		const data = await res.json();
+		setHistory(data.history ?? []);
+	}
+
+	useEffect(() => {
+		if (password.length <= 3) return;
+		let cancelled = false;
+		fetch("/api/menu", { headers: { "x-admin-password": password } })
+			.then((r) => (r.ok ? r.json() : null))
+			.then((data) => {
+				if (!cancelled && data) setHistory(data.history ?? []);
+			});
+		return () => { cancelled = true; };
+	}, [password]);
 
 	async function upload(file: File) {
 		if (!password) {
@@ -51,6 +97,26 @@ export default function AdminMenuPage() {
 		const data = await res.json();
 		setUploadedUrl(data.url);
 		setStatus("success");
+		fetchHistory(password);
+	}
+
+	async function restore(url: string) {
+		setRestoringUrl(url);
+		const res = await fetch("/api/menu/restore", {
+			method: "POST",
+			headers: {
+				"x-admin-password": password,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ url }),
+		});
+		setRestoringUrl(null);
+		if (res.ok) {
+			const data = await res.json();
+			setUploadedUrl(data.url);
+			setStatus("success");
+			fetchHistory(password);
+		}
 	}
 
 	function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -70,7 +136,7 @@ export default function AdminMenuPage() {
 			className="min-h-screen flex items-center justify-center p-6"
 			style={{ background: "var(--color-cream)" }}
 		>
-			<div className="w-full max-w-[420px]">
+			<div className="w-full max-w-105 flex flex-col gap-4">
 				{/* Ticket card */}
 				<div
 					className="rounded-2xl overflow-visible relative"
@@ -284,6 +350,66 @@ export default function AdminMenuPage() {
 						)}
 					</div>
 				</div>
+
+				{/* History panel */}
+				{history.length > 0 && (
+					<div
+						className="rounded-2xl px-6 py-5 flex flex-col gap-3"
+						style={{
+							background: "#3f3525",
+							boxShadow:
+								"0 4px 6px -1px rgba(44,36,22,0.08), 0 10px 30px -5px rgba(44,36,22,0.12)",
+						}}
+					>
+						<p
+							className="text-[0.68rem] font-medium tracking-[0.18em] uppercase"
+							style={{ color: "rgba(250,245,236,0.35)" }}
+						>
+							Upload history
+						</p>
+						<ul className="flex flex-col gap-2">
+							{history.map((entry) => (
+								<li
+									key={entry.url}
+									className="flex items-center justify-between gap-3"
+								>
+									<div className="flex flex-col gap-0.5 min-w-0">
+										<a
+											href={entry.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-[0.82rem] font-medium truncate underline underline-offset-2"
+											style={{ color: "rgba(250,245,236,0.7)" }}
+										>
+											{filename(entry.pathname)}
+										</a>
+										<span
+											className="text-[0.72rem]"
+											style={{ color: "rgba(250,245,236,0.3)" }}
+										>
+											{formatDate(entry.uploadedAt)}
+										</span>
+									</div>
+									<button
+										type="button"
+										onClick={() => restore(entry.url)}
+										disabled={restoringUrl === entry.url}
+										title="Restore this version"
+										className="shrink-0 flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[0.75rem] font-medium transition-opacity"
+										style={{
+											background: "rgba(250,245,236,0.08)",
+											color: "rgba(250,245,236,0.55)",
+											opacity: restoringUrl === entry.url ? 0.5 : 1,
+										}}
+									>
+										<ArrowCounterClockwiseIcon size={13} weight="bold" aria-hidden />
+										{restoringUrl === entry.url ? "Restoring…" : "Restore"}
+									</button>
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
 			</div>
 		</div>
 	);

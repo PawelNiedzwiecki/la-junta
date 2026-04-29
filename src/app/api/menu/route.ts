@@ -1,9 +1,15 @@
-import { put } from "@vercel/blob";
+import { del, list, put } from "@vercel/blob";
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+const HISTORY_LIMIT = 10;
+
+function requireAuth(request: NextRequest) {
 	const password = request.headers.get("x-admin-password");
-	if (password !== process.env.ADMIN_PASSWORD) {
+	return password === process.env.ADMIN_PASSWORD;
+}
+
+export async function POST(request: NextRequest) {
+	if (!requireAuth(request)) {
 		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 	}
 
@@ -16,10 +22,40 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: "File must be a PDF" }, { status: 400 });
 	}
 
-	const blob = await put("menu/current.pdf", file, {
-		access: "public",
-		allowOverwrite: true,
-	});
+	const ts = new Date().toISOString().replace(/[:.]/g, "-");
+	const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+	const [blob, , { blobs: existing }] = await Promise.all([
+		put("menu/current.pdf", file, { access: "public", allowOverwrite: true }),
+		put(`menu/history/${ts}-${safeName}`, file, { access: "public" }),
+		list({ prefix: "menu/history/" }),
+	]);
+
+	const sorted = existing.sort(
+		(a, b) => new Date(a.uploadedAt).getTime() - new Date(b.uploadedAt).getTime(),
+	);
+	// sorted is pre-new-upload; new entry pushes count to existing.length + 1
+	const overflow = sorted.slice(0, Math.max(0, sorted.length + 1 - HISTORY_LIMIT));
+	if (overflow.length > 0) {
+		await Promise.all(overflow.map((b) => del(b.url)));
+	}
 
 	return NextResponse.json({ url: blob.url });
+}
+
+export async function GET(request: NextRequest) {
+	if (!requireAuth(request)) {
+		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	}
+
+	const { blobs } = await list({ prefix: "menu/history/" });
+	const history = blobs
+		.sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
+		.map((b) => ({
+			url: b.url,
+			pathname: b.pathname,
+			uploadedAt: b.uploadedAt,
+		}));
+
+	return NextResponse.json({ history });
 }
