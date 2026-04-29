@@ -36,6 +36,12 @@ export default function Footer({ dict }: { dict: DictType["footer"] }) {
 					<MapPin size={13} weight="duotone" aria-hidden />
 					{dict.location} · {new Date().getFullYear()}
 				</p>
+				<a
+					href="/admin/menu"
+					className="eyebrow text-cream/20 hover:text-cream/40 transition-colors mt-1"
+				>
+					admin
+				</a>
 			</div>
 		</footer>
 	);
