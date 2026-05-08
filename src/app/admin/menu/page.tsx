@@ -10,6 +10,7 @@ type UploadStatus = "idle" | "uploading" | "success" | "error" | "wrong-password
 export default function AdminMenuPage() {
 	const [password, setPassword] = useState("");
 	const [status, setStatus] = useState<UploadStatus>("idle");
+	const [unlocked, setUnlocked] = useState(false);
 	const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 	const [fileName, setFileName] = useState<string | null>(null);
 	const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -17,11 +18,19 @@ export default function AdminMenuPage() {
 	const [downloading, setDownloading] = useState(false);
 
 	useEffect(() => {
-		if (password.length <= 3) return;
+		if (password.length <= 3) { setUnlocked(false); return; }
 		let cancelled = false;
 		fetch("/api/menu", { headers: { "x-admin-password": password } })
 			.then((r) => (r.ok ? r.json() : null))
-			.then((data) => { if (!cancelled && data) setHistory(data.history ?? []); });
+			.then((data) => {
+				if (cancelled) return;
+				if (data) {
+					setHistory(data.history ?? []);
+					setUnlocked(true);
+				} else {
+					setUnlocked(false);
+				}
+			});
 		return () => { cancelled = true; };
 	}, [password]);
 
@@ -95,15 +104,18 @@ export default function AdminMenuPage() {
 					fileName={fileName}
 					uploadedUrl={uploadedUrl}
 					onUpload={upload}
+					unlocked={unlocked}
 				/>
 
-				<HistoryPanel
-					history={history}
-					restoringUrl={restoringUrl}
-					onRestore={restore}
-				/>
+				{unlocked && (
+					<HistoryPanel
+						history={history}
+						restoringUrl={restoringUrl}
+						onRestore={restore}
+					/>
+				)}
 
-				{password.length > 3 && (
+				{unlocked && (
 					<div
 						className="rounded-2xl px-6 py-5 flex items-center justify-between gap-4"
 						style={{
