@@ -36,7 +36,7 @@
 	"comunidad": {
 		"eyebrow": "La Comunidad",
 		"heading": "Quiénes somos",
-		"p1": "Somos un par de Chilenos que empezarón a extrañar esa mezcla de comida casera mezclada con la buena sobremesa Chilena. Así nació la Junta, un club que se repite mes a mes alrededor de una buena mesa al estilo Chileno, donde la comida Chilena es la excusa para juntarnos y la comunidad es el real plato principal.",
+		"p1": "Somos un par de Chilenos que empezarón a extrañar esa mezcla de comida casera mezclada con la buena sobremesa Chilena.",
 		"p2Pre": "Así nació ",
 		"p2Emphasis": "La Junta",
 		"p2Post": ": un supper club que se repite mes a mes, una mesa larga abierta a quien quiera sentarse, donde la comida chilena es la excusa y la comunidad, el plato principal."
@@ -83,7 +83,7 @@
 			"email": "Email",
 			"celular": "Celular",
 			"alergiaHeading": "Alergias alimenticias",
-				"alergiaHint": "¿Sin alergias? Deja todas las casillas sin marcar.",
+			"alergiaHint": "¿Sin alergias? Deja todas las casillas sin marcar.",
 			"alergiaYo": "Yo",
 			"alergiaOtra": "Especifica tu alergia",
 			"guestLabel": "Persona",
