@@ -10,7 +10,7 @@ export default function KitchenSceneIllustration({ className = "" }: Props) {
 			width={520}
 			height={390}
 			className={className}
-			priority
+			sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 900px"
 		/>
 	);
 }

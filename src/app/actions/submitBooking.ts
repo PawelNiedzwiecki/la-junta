@@ -50,11 +50,31 @@ export type BookingPayload = {
 
 export type BookingResult = { ok: true } | { ok: false; error: string };
 
+function validatePayload(payload: BookingPayload): boolean {
+	const { firstName, lastName, email, phone, guests } = payload;
+	if (!firstName.trim() || firstName.length > 100) return false;
+	if (!lastName.trim() || lastName.length > 100) return false;
+	if (!email.trim() || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
+	if (!phone.trim() || phone.length > 30) return false;
+	if (guests.length < 1 || guests.length > 5) return false;
+	for (let i = 1; i < guests.length; i++) {
+		if (!guests[i].name.trim() || guests[i].name.length > 100) return false;
+	}
+	for (const g of guests) {
+		if (g.otherAllergy.length > 500) return false;
+	}
+	return true;
+}
+
 export async function submitBooking(
 	payload: BookingPayload,
 ): Promise<BookingResult> {
 	if (payload.honeypot) {
 		return { ok: true };
+	}
+
+	if (!validatePayload(payload)) {
+		return { ok: false, error: "validation" };
 	}
 
 	const { firstName, lastName, email, phone, guests } = payload;

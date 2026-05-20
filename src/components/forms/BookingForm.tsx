@@ -1,7 +1,7 @@
 "use client";
 
 import { Leaf } from "@phosphor-icons/react/dist/ssr";
-import { useCallback, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import Eyebrow from "../ui/Eyebrow";
 import { submitBooking } from "@/app/actions/submitBooking";
@@ -17,6 +17,11 @@ const SELECT_STYLE = {
 export default function BookingForm({ dict }: { dict: DictType["reserva"] }) {
 	const [submitted, setSubmitted] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
+	const successRef = useRef<HTMLParagraphElement>(null);
+
+	useEffect(() => {
+		if (submitted) successRef.current?.focus();
+	}, [submitted]);
 	const [accepted, setAccepted] = useState(false);
 	const [isPending, startTransition] = useTransition();
 	const [fields, setFields] = useState({
@@ -139,9 +144,14 @@ export default function BookingForm({ dict }: { dict: DictType["reserva"] }) {
 					{dict.subtext}
 				</p>
 
+				<div aria-live="polite" aria-atomic="true">
 				{submitted ? (
 					<div className="mt-6 w-full rounded-xl bg-cream/70 border border-dark/15 px-8 py-10 text-dark">
-						<p className="text-2xl mb-2 flex items-center justify-center gap-2 font-semibold">
+						<p
+							ref={successRef}
+							tabIndex={-1}
+							className="text-2xl mb-2 flex items-center justify-center gap-2 font-semibold outline-none"
+						>
 							<Leaf
 								size={22}
 								weight="duotone"
@@ -379,6 +389,7 @@ export default function BookingForm({ dict }: { dict: DictType["reserva"] }) {
 						</div>
 					</form>
 				)}
+				</div>
 			</div>
 		</section>
 	);

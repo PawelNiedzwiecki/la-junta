@@ -13,7 +13,8 @@
 			"preguntas": "¿Preguntas?"
 		},
 		"cta": "Menú de Mayo",
-		"switchLabel": "EN"
+		"switchLabel": "EN",
+		"mobileMenuLabel": "Abrir menú de navegación"
 	},
 	"hero": {
 		"eyebrow": "Experiencia Gastronómica · Londres",

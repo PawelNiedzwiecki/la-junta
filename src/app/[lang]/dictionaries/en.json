@@ -13,7 +13,8 @@
 			"preguntas": "FAQ"
 		},
 		"cta": "May Menu",
-		"switchLabel": "ES"
+		"switchLabel": "ES",
+		"mobileMenuLabel": "Open navigation menu"
 	},
 	"hero": {
 		"eyebrow": "Culinary Experience · London",

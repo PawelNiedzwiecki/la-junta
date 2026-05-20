@@ -21,6 +21,10 @@ export async function POST(request: NextRequest) {
 	if (file.type !== "application/pdf") {
 		return NextResponse.json({ error: "File must be a PDF" }, { status: 400 });
 	}
+	const MAX_BYTES = 20 * 1024 * 1024;
+	if (file.size > MAX_BYTES) {
+		return NextResponse.json({ error: "File too large (max 20 MB)" }, { status: 413 });
+	}
 
 	const ts = new Date().toISOString().replace(/[:.]/g, "-");
 	const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");

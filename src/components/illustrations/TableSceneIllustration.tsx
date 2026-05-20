@@ -10,6 +10,7 @@ export default function TableSceneIllustration({ className = "" }: Props) {
 			width={1340}
 			height={860}
 			className={className}
+			sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 900px"
 		/>
 	);
 }

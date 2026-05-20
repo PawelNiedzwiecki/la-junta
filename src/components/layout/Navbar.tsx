@@ -68,7 +68,10 @@ export default function Navbar({
 
 				{/* ── Mobile bar ── */}
 				<details className="md:hidden group">
-					<summary className="flex items-center justify-between py-3.5 list-none cursor-pointer">
+					<summary
+						aria-label={dict.mobileMenuLabel}
+						className="flex items-center justify-between py-3.5 list-none cursor-pointer"
+					>
 						{/* Logo */}
 						<Link
 							href="#top"
