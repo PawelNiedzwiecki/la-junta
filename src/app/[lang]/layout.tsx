@@ -39,12 +39,14 @@ export default async function RootLayout({
 }) {
 	const { lang } = await params;
 	return (
-		<html
-			lang={lang}
-			className={montserrat.variable}
-			data-scroll-behavior="smooth"
-		>
+		<html lang={lang} className={montserrat.variable}>
 			<body className="bg-cream text-dark min-h-screen flex flex-col antialiased">
+				<a
+					href="#top"
+					className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-dark focus:text-cream focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-amber"
+				>
+					Skip to content
+				</a>
 				{children}
 				<Analytics />
 			</body>
