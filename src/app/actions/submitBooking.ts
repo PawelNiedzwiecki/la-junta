@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import { EVENT } from "@/config/event";
 import BookingConfirmation from "@/emails/BookingConfirmation";
 import BookingNotification from "@/emails/BookingNotification";
+import { getEventConfig } from "./getEventConfig";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -57,6 +58,7 @@ export async function submitBooking(
 		return { ok: true };
 	}
 
+	const [eventConfig] = await Promise.all([getEventConfig()]);
 	const { firstName, lastName, email, phone, guests } = payload;
 	const bookerName = `${firstName} ${lastName}`;
 	const submittedAt = new Date();
@@ -81,7 +83,7 @@ export async function submitBooking(
 		guest.otherAllergy || "",
 		String(guests.length),
 		EVENT.name,
-		EVENT.date,
+		eventConfig.date,
 	]);
 
 	try {
@@ -92,7 +94,7 @@ export async function submitBooking(
 	}
 
 	const [confirmHtml, notifyHtml] = await Promise.all([
-		render(createElement(BookingConfirmation, { firstName, guests })),
+		render(createElement(BookingConfirmation, { firstName, guests, dateEn: eventConfig.dateEn })),
 		render(
 			createElement(BookingNotification, {
 				bookerName,
@@ -100,6 +102,7 @@ export async function submitBooking(
 				phone,
 				guests,
 				submittedAt: submittedAtFormatted,
+				dateEs: eventConfig.date,
 			}),
 		),
 	]);
@@ -109,7 +112,7 @@ export async function submitBooking(
 			resend.emails.send({
 				from: `${EVENT.fromName} <${EVENT.fromEmail}>`,
 				to: email,
-				subject: `Reservation confirmed — ${EVENT.name}, ${EVENT.dateEn}`,
+				subject: `Reservation confirmed — ${EVENT.name}, ${eventConfig.dateEn}`,
 				html: confirmHtml,
 			}),
 			resend.emails.send({

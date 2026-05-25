@@ -18,9 +18,11 @@ import { EVENT } from "@/config/event";
 type Props = {
 	firstName: string;
 	guests: BookingGuest[];
+	dateEn?: string;
 };
 
-export default function BookingConfirmation({ firstName, guests }: Props) {
+export default function BookingConfirmation({ firstName, guests, dateEn }: Props) {
+	const displayDate = dateEn ?? EVENT.dateEn;
 	const bookerName = guests[0]?.name ?? firstName;
 
 	return (
@@ -37,7 +39,7 @@ export default function BookingConfirmation({ firstName, guests }: Props) {
 					<Section style={card}>
 						<Row style={tableRow}>
 							<Column style={labelCell}>Date</Column>
-							<Column style={valueCell}>{EVENT.dateEn}</Column>
+							<Column style={valueCell}>{displayDate}</Column>
 						</Row>
 						<Row style={tableRowAlt}>
 							<Column style={labelCell}>Time</Column>

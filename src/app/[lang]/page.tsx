@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getEventConfig } from "@/app/actions/getEventConfig";
 import { getMenuUrl } from "@/app/actions/getMenuUrl";
 import BookingForm from "@/components/forms/BookingForm";
 import Footer from "@/components/layout/Footer";
@@ -10,7 +11,18 @@ import History from "@/components/sections/History";
 import Kitchen from "@/components/sections/Kitchen";
 import Process from "@/components/sections/Process";
 import MenuCard from "@/components/ui/MenuCard";
-import { getDictionary, hasLocale } from "./dictionaries";
+import { type DictType, getDictionary, hasLocale } from "./dictionaries";
+
+export const dynamic = "force-dynamic";
+
+function applyEventDate(dict: DictType, dateStr: string): DictType {
+	const replace = (s: string) => s.replace("{eventDate}", dateStr);
+	return {
+		...dict,
+		menuCard: { ...dict.menuCard, heading: replace(dict.menuCard.heading) },
+		reserva: { ...dict.reserva, heading: replace(dict.reserva.heading) },
+	};
+}
 
 export default async function Home({
 	params,
@@ -19,25 +31,31 @@ export default async function Home({
 }) {
 	const { lang } = await params;
 	if (!hasLocale(lang)) notFound();
-	const [dict, menuUrl] = await Promise.all([
+	const [dict, menuUrl, eventConfig] = await Promise.all([
 		getDictionary(lang),
 		getMenuUrl(),
+		getEventConfig(),
 	]);
+
+	const resolvedDict = applyEventDate(
+		dict,
+		lang === "es" ? eventConfig.date : eventConfig.dateEn,
+	);
 
 	return (
 		<>
-			<Navbar dict={dict.navbar} lang={lang} />
+			<Navbar dict={resolvedDict.navbar} lang={lang} />
 			<main className="flex-1">
-				<Hero dict={dict.hero} />
-				<History dict={dict.historia} />
-				<Kitchen dict={dict.cocina} />
-				<Community dict={dict.comunidad} />
-				<MenuCard dict={dict.menuCard} menuUrl={menuUrl} />
-				<Process dict={dict.proceso} />
-				<BookingForm dict={dict.reserva} />
-				<Faq dict={dict.faq} />
+				<Hero dict={resolvedDict.hero} />
+				<History dict={resolvedDict.historia} />
+				<Kitchen dict={resolvedDict.cocina} />
+				<Community dict={resolvedDict.comunidad} />
+				<MenuCard dict={resolvedDict.menuCard} menuUrl={menuUrl} />
+				<Process dict={resolvedDict.proceso} />
+				<BookingForm dict={resolvedDict.reserva} />
+				<Faq dict={resolvedDict.faq} />
 			</main>
-			<Footer dict={dict.footer} />
+			<Footer dict={resolvedDict.footer} />
 		</>
 	);
 }
