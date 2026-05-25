@@ -44,7 +44,7 @@
 	},
 	"menuCard": {
 		"eyebrow": "Nuestro Menú",
-		"heading": "La junta del 16 de Mayo ya se está cocinando",
+		"heading": "La junta del {eventDate} ya se está cocinando",
 		"time": "14:00",
 		"location": "cerca de London Bridge",
 		"reminder": "recuerda elegir tu opción de menú",
@@ -76,7 +76,7 @@
 	},
 	"reserva": {
 		"eyebrow": "Únete",
-		"heading": "Reserva tu lugar para el 16 de Mayo",
+		"heading": "Reserva tu lugar para el {eventDate}",
 		"subtext": "Compártenos tu información para asistir a la próxima junta.",
 		"fields": {
 			"nombre": "Nombre",
