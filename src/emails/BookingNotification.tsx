@@ -19,6 +19,7 @@ type Props = {
 	phone: string;
 	guests: BookingGuest[];
 	submittedAt: string;
+	dateEs?: string;
 };
 
 export default function BookingNotification({
@@ -27,7 +28,9 @@ export default function BookingNotification({
 	phone,
 	guests,
 	submittedAt,
+	dateEs,
 }: Props) {
+	const displayDate = dateEs ?? EVENT.date;
 	const partyLabel = guests.length === 1 ? "person" : "people";
 	const previewText = `New booking: ${bookerName} (${guests.length} ${partyLabel})`;
 
@@ -38,7 +41,7 @@ export default function BookingNotification({
 			<Body style={body}>
 				<Container style={container}>
 					<Heading style={h1}>
-						New reservation — {EVENT.name} {EVENT.date}
+						New reservation — {EVENT.name} {displayDate}
 					</Heading>
 
 					<Section style={card}>

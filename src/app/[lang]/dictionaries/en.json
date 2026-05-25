@@ -43,7 +43,7 @@
 	},
 	"menuCard": {
 		"eyebrow": "Our Menu",
-		"heading": "The Junta on 16th of May is already simmering away ",
+		"heading": "The Junta on {eventDate} is already simmering away ",
 		"time": "14:00",
 		"location": "near London Bridge",
 		"reminder": "remember to choose your menu option",
@@ -75,7 +75,7 @@
 	},
 	"reserva": {
 		"eyebrow": "Join us",
-		"heading": "Book your seat for 16th May",
+		"heading": "Book your seat for {eventDate}",
 		"subtext": "Share your details with us to come along to the next junta.",
 		"fields": {
 			"nombre": "First name",

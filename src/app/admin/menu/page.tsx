@@ -1,11 +1,12 @@
 "use client";
 
-import { DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr";
+import { CalendarIcon, DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { useEffect, useState } from "react";
 import { type HistoryEntry, HistoryPanel } from "./HistoryPanel";
 import { UploadCard } from "./UploadCard";
 
 type UploadStatus = "idle" | "uploading" | "success" | "error" | "wrong-password";
+type DateSaveStatus = "idle" | "saving" | "success" | "error";
 
 export default function AdminMenuPage() {
 	const [password, setPassword] = useState("");
@@ -17,18 +18,28 @@ export default function AdminMenuPage() {
 	const [restoringUrl, setRestoringUrl] = useState<string | null>(null);
 	const [downloading, setDownloading] = useState(false);
 
+	const [currentIsoDate, setCurrentIsoDate] = useState<string | null>(null);
+	const [dateInput, setDateInput] = useState("");
+	const [dateSaveStatus, setDateSaveStatus] = useState<DateSaveStatus>("idle");
+
 	useEffect(() => {
 		if (password.length <= 3) { setUnlocked(false); return; }
 		let cancelled = false;
-		fetch("/api/menu", { headers: { "x-admin-password": password } })
-			.then((r) => (r.ok ? r.json() : null))
-			.then((data) => {
+		Promise.all([
+			fetch("/api/menu", { headers: { "x-admin-password": password } }),
+			fetch("/api/event", { headers: { "x-admin-password": password } }),
+		])
+			.then(async ([menuRes, eventRes]) => {
 				if (cancelled) return;
-				if (data) {
-					setHistory(data.history ?? []);
-					setUnlocked(true);
-				} else {
-					setUnlocked(false);
+				if (!menuRes.ok) { setUnlocked(false); return; }
+				const menuData = await menuRes.json();
+				setHistory(menuData.history ?? []);
+				setUnlocked(true);
+				if (eventRes.ok) {
+					const eventData = await eventRes.json();
+					const iso = eventData.isoDate ?? "2026-05-16";
+					setCurrentIsoDate(iso);
+					setDateInput(iso);
 				}
 			});
 		return () => { cancelled = true; };
@@ -37,6 +48,24 @@ export default function AdminMenuPage() {
 	async function refreshHistory() {
 		const res = await fetch("/api/menu", { headers: { "x-admin-password": password } });
 		if (res.ok) setHistory((await res.json()).history ?? []);
+	}
+
+	async function saveEventDate() {
+		if (!dateInput) return;
+		setDateSaveStatus("saving");
+		const res = await fetch("/api/event", {
+			method: "POST",
+			headers: { "x-admin-password": password, "Content-Type": "application/json" },
+			body: JSON.stringify({ isoDate: dateInput }),
+		});
+		if (res.ok) {
+			setCurrentIsoDate(dateInput);
+			setDateSaveStatus("success");
+			setTimeout(() => setDateSaveStatus("idle"), 3000);
+		} else {
+			setDateSaveStatus("error");
+			setTimeout(() => setDateSaveStatus("idle"), 3000);
+		}
 	}
 
 	async function upload(file: File) {
@@ -113,6 +142,77 @@ export default function AdminMenuPage() {
 						restoringUrl={restoringUrl}
 						onRestore={restore}
 					/>
+				)}
+
+				{unlocked && (
+					<div
+						className="rounded-2xl px-6 py-5 flex flex-col gap-4"
+						style={{
+							background: "#3f3525",
+							boxShadow: "0 4px 6px -1px rgba(44,36,22,0.08), 0 10px 30px -5px rgba(44,36,22,0.12)",
+						}}
+					>
+						<div className="flex items-center gap-2">
+							<CalendarIcon size={14} weight="duotone" style={{ color: "var(--color-amber)" }} aria-hidden />
+							<p
+								className="text-[0.68rem] font-medium tracking-[0.18em] uppercase"
+								style={{ color: "rgba(250,245,236,0.35)" }}
+							>
+								Event date
+							</p>
+						</div>
+
+						{currentIsoDate && (
+							<p className="text-[0.8rem]" style={{ color: "rgba(250,245,236,0.45)" }}>
+								Currently set to{" "}
+								<span className="font-medium" style={{ color: "rgba(250,245,236,0.75)" }}>
+									{currentIsoDate}
+								</span>
+							</p>
+						)}
+
+						<div className="flex items-center gap-3">
+							<input
+								type="date"
+								value={dateInput}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+									setDateInput(e.target.value);
+									setDateSaveStatus("idle");
+								}}
+								className="flex-1 rounded-lg px-4 py-2.5 text-[0.88rem] font-[inherit] outline-none transition-colors"
+								style={{
+									background: "rgba(250,245,236,0.06)",
+									border: "1px solid rgba(250,245,236,0.12)",
+									color: "var(--color-cream)",
+									colorScheme: "dark",
+								}}
+							/>
+							<button
+								type="button"
+								onClick={saveEventDate}
+								disabled={dateSaveStatus === "saving" || !dateInput || dateInput === currentIsoDate}
+								className="shrink-0 flex items-center gap-2 rounded-lg px-4 py-2.5 text-[0.82rem] font-medium transition-opacity"
+								style={{
+									background: "var(--color-amber)",
+									color: "var(--color-dark-card)",
+									opacity: (dateSaveStatus === "saving" || !dateInput || dateInput === currentIsoDate) ? 0.5 : 1,
+								}}
+							>
+								{dateSaveStatus === "saving" ? "Saving…" : "Save"}
+							</button>
+						</div>
+
+						{dateSaveStatus === "success" && (
+							<p className="text-[0.8rem]" style={{ color: "rgb(134,239,172)" }}>
+								Event date updated — the website will reflect the new date immediately.
+							</p>
+						)}
+						{dateSaveStatus === "error" && (
+							<p className="text-[0.8rem]" style={{ color: "rgb(252,165,165)" }}>
+								Failed to save. Please try again.
+							</p>
+						)}
+					</div>
 				)}
 
 				{unlocked && (
