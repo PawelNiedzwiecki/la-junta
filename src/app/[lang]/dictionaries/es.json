@@ -12,7 +12,7 @@
 			"como_funciona": "¿Cómo funciona?",
 			"preguntas": "¿Preguntas?"
 		},
-		"cta": "Menú de Mayo",
+		"cta": "Nuestro Menú",
 		"switchLabel": "EN",
 		"mobileMenuLabel": "Abrir menú de navegación"
 	},
@@ -47,10 +47,10 @@
 		"heading": "La junta del {eventDate} ya se está cocinando",
 		"time": "14:00",
 		"location": "cerca de London Bridge",
-		"reminder": "recuerda elegir tu opción de menú",
+		"reminder": "recuerda ver nuestro menú de este mes",
 		"descriptionLabel": "¿Qué nos trae este mes?",
 		"description": "Partimos con el abrazo cítrico del Pisco Sauer, para luego dejarnos llevar entre el mar y la huerta. Fuego lento, maíz molido a la usanza criolla y hierbas del campo, hasta llegar a la dulzura más chilena que existe.",
-		"ctaPrimary": "Revisa nuestra mesa de Mayo",
+		"ctaPrimary": "Revisa nuestro menú",
 		"ctaSecondary": "¿Te apuntas?"
 	},
 	"proceso": {
