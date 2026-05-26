@@ -1,16 +1,19 @@
 import {
-	Clock,
-	DiamondsFour,
-	ForkKnife,
-	Info,
-	MapPin,
+	ClockIcon,
+	DiamondsFourIcon,
+	ForkKnifeIcon,
+	InfoIcon,
+	MapPinIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
 export default function MenuCard({
 	dict,
 	menuUrl,
-}: { dict: DictType["menuCard"]; menuUrl: string | null }) {
+}: {
+	dict: DictType["menuCard"];
+	menuUrl: string | null;
+}) {
 	return (
 		<section
 			id="menu"
@@ -22,9 +25,9 @@ export default function MenuCard({
 					{/* Zone A — stub */}
 					<div className="bg-dark-card rounded-t-[14px] px-6 sm:px-10 pt-12 pb-10 flex flex-col items-center text-center gap-6">
 						<div className="eyebrow text-amber flex items-center gap-3">
-							<DiamondsFour size={14} weight="duotone" aria-hidden />
+							<DiamondsFourIcon size={14} weight="duotone" aria-hidden />
 							<span>{dict.eyebrow}</span>
-							<DiamondsFour size={14} weight="duotone" aria-hidden />
+							<DiamondsFourIcon size={14} weight="duotone" aria-hidden />
 						</div>
 
 						<h2 className="text-cream text-[1.9rem] sm:text-4xl md:text-4xl leading-[1.05] tracking-tight font-semibold max-w-170">
@@ -34,7 +37,7 @@ export default function MenuCard({
 						{/* Ticket detail row */}
 						<div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 mt-2 text-[0.88rem] sm:text-[0.92rem] sm:bg-[#3f3525] sm:rounded-full sm:px-4 sm:py-2">
 							<span className="flex items-center justify-center gap-2 text-cream/90 bg-[#3f3525] sm:bg-transparent rounded-full px-4 py-2 w-full sm:w-auto">
-								<Clock
+								<ClockIcon
 									size={16}
 									weight="duotone"
 									className="text-cream shrink-0"
@@ -42,19 +45,23 @@ export default function MenuCard({
 								/>
 								<span className="font-semibold tracking-wide">{dict.time}</span>
 							</span>
-							<span className="text-amber/40 hidden sm:inline" aria-hidden>|</span>
+							<span className="text-amber/40 hidden sm:inline" aria-hidden>
+								|
+							</span>
 							<span className="flex items-center justify-center gap-2 text-cream/90 bg-[#3f3525] sm:bg-transparent rounded-full px-4 py-2 w-full sm:w-auto">
-								<MapPin
+								<MapPinIcon
 									size={16}
 									weight="duotone"
 									className="text-cream shrink-0"
 									aria-hidden
 								/>
-								<span className="font-semibold tracking-wide">{dict.location}</span>
+								<span className="font-semibold tracking-wide">
+									{dict.location}
+								</span>
 							</span>
 						</div>
 						<p className="flex items-center gap-1.5 italic text-cream/50 text-[0.8rem] bg-cream/5 border border-cream/10 rounded-full px-3 py-1.5">
-							<Info
+							<InfoIcon
 								size={13}
 								weight="duotone"
 								className="shrink-0"
@@ -82,7 +89,7 @@ export default function MenuCard({
 					{/* Zone B — body stub */}
 					<div className="bg-[#3f3525] rounded-b-[14px] px-6 sm:px-12 pt-8 pb-12 flex flex-col items-center text-center gap-6">
 						<div className="hairline hairline-amber w-full max-w-xs">
-							<ForkKnife
+							<ForkKnifeIcon
 								size={20}
 								weight="duotone"
 								className="text-cream/50"

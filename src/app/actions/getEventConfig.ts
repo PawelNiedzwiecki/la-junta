@@ -7,6 +7,8 @@ export type EventConfig = {
 	isoDate: string;
 	date: string;
 	dateEn: string;
+	description?: string;
+	descriptionEn?: string;
 };
 
 export async function getEventConfig(): Promise<EventConfig> {
@@ -15,16 +17,23 @@ export async function getEventConfig(): Promise<EventConfig> {
 		if (!blobs.length) return fallback();
 		const res = await fetch(blobs[0].url, { cache: "no-store" });
 		if (!res.ok) return fallback();
-		const { isoDate } = await res.json();
+		const data = await res.json() as Record<string, string | undefined>;
+		const { isoDate, description, descriptionEn } = data;
 		if (!isoDate) return fallback();
-		return { isoDate, ...formatDates(isoDate) };
+		return {
+			isoDate,
+			...formatDates(isoDate),
+			...(description?.trim() ? { description } : {}),
+			...(descriptionEn?.trim() ? { descriptionEn } : {}),
+		};
 	} catch {
 		return fallback();
 	}
 }
 
 function fallback(): EventConfig {
-	return { isoDate: "2026-05-16", date: EVENT.date, dateEn: EVENT.dateEn };
+	const isoDate = new Date().toISOString().slice(0, 10);
+	return { isoDate, date: EVENT.date, dateEn: EVENT.dateEn };
 }
 
 function formatDates(isoDate: string): { date: string; dateEn: string } {

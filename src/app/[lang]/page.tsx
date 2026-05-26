@@ -15,11 +15,19 @@ import { type DictType, getDictionary, hasLocale } from "./dictionaries";
 
 export const dynamic = "force-dynamic";
 
-function applyEventDate(dict: DictType, dateStr: string): DictType {
+function applyEventConfig(
+	dict: DictType,
+	dateStr: string,
+	description?: string,
+): DictType {
 	const replace = (s: string) => s.replace("{eventDate}", dateStr);
 	return {
 		...dict,
-		menuCard: { ...dict.menuCard, heading: replace(dict.menuCard.heading) },
+		menuCard: {
+			...dict.menuCard,
+			heading: replace(dict.menuCard.heading),
+			...(description?.trim() ? { description } : {}),
+		},
 		reserva: { ...dict.reserva, heading: replace(dict.reserva.heading) },
 	};
 }
@@ -37,14 +45,15 @@ export default async function Home({
 		getEventConfig(),
 	]);
 
-	const resolvedDict = applyEventDate(
+	const resolvedDict = applyEventConfig(
 		dict,
 		lang === "es" ? eventConfig.date : eventConfig.dateEn,
+		lang === "es" ? eventConfig.description : eventConfig.descriptionEn,
 	);
 
 	return (
 		<>
-			<Navbar dict={resolvedDict.navbar} lang={lang} />
+			<Navbar dict={resolvedDict.navbar} lang={lang} menuUrl={menuUrl} />
 			<main className="flex-1">
 				<Hero dict={resolvedDict.hero} />
 				<History dict={resolvedDict.historia} />

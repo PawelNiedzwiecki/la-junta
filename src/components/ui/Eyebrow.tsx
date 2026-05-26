@@ -1,4 +1,4 @@
-import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
+import { DiamondsFourIcon } from "@phosphor-icons/react/dist/ssr";
 
 type Props = {
 	children: React.ReactNode;
@@ -16,11 +16,11 @@ export default function Eyebrow({
 			className={`eyebrow text-muted flex items-center justify-center gap-3 ${className}`}
 		>
 			{withDiamond && (
-				<DiamondsFour size={14} weight="duotone" aria-hidden />
+				<DiamondsFourIcon size={14} weight="duotone" aria-hidden />
 			)}
 			<span>{children}</span>
 			{withDiamond && (
-				<DiamondsFour size={14} weight="duotone" aria-hidden />
+				<DiamondsFourIcon size={14} weight="duotone" aria-hidden />
 			)}
 		</div>
 	);

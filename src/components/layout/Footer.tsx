@@ -1,7 +1,7 @@
 import {
-	EnvelopeSimple,
-	InstagramLogo,
-	MapPin,
+	EnvelopeSimpleIcon,
+	InstagramLogoIcon,
+	MapPinIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 
@@ -22,18 +22,18 @@ export default function Footer({ dict }: { dict: DictType["footer"] }) {
 						aria-label="Instagram"
 						className="text-cream/50 hover:text-cream transition-colors"
 					>
-						<InstagramLogo size={20} weight="duotone" />
+						<InstagramLogoIcon size={20} weight="duotone" />
 					</a>
 					<a
 						href="mailto:bookings@lajunta.co.uk"
 						aria-label="Email"
 						className="text-cream/50 hover:text-cream transition-colors"
 					>
-						<EnvelopeSimple size={20} weight="duotone" />
+						<EnvelopeSimpleIcon size={20} weight="duotone" />
 					</a>
 				</div>
 				<p className="eyebrow text-cream/45 mt-2 flex items-center gap-2">
-					<MapPin size={13} weight="duotone" aria-hidden />
+					<MapPinIcon size={13} weight="duotone" aria-hidden />
 					{dict.location} · {new Date().getFullYear()}
 				</p>
 				<a

@@ -1,4 +1,4 @@
-import { DiamondsFour, Wine } from "@phosphor-icons/react/dist/ssr";
+import { DiamondsFourIcon, WineIcon } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import SectionHeader from "../ui/SectionHeader";
 
@@ -45,7 +45,7 @@ export default function Process({ dict }: { dict: DictType["proceso"] }) {
 				</ol>
 
 				<div className="hairline-amber hairline w-full max-w-xs">
-					<DiamondsFour
+					<DiamondsFourIcon
 						size={14}
 						weight="duotone"
 						className="text-amber"
@@ -56,7 +56,7 @@ export default function Process({ dict }: { dict: DictType["proceso"] }) {
 				<div className="w-full bg-dark-card rounded-2xl px-6 py-8 flex flex-col gap-4">
 					<div className="flex items-center gap-3">
 						<div className="w-8 h-8 rounded-full bg-amber flex items-center justify-center shrink-0">
-							<Wine
+							<WineIcon
 								size={16}
 								weight="duotone"
 								className="text-cream"

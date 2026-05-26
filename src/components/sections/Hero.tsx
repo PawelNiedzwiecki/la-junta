@@ -1,4 +1,4 @@
-import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
+import { DiamondsFourIcon } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import PergolaIllustration from "../illustrations/PergolaIllustration";
 import Eyebrow from "../ui/Eyebrow";
@@ -18,7 +18,7 @@ export default function Hero({ dict }: { dict: DictType["hero"] }) {
 				</h1>
 
 				<div className="hairline-amber hairline w-full max-w-60 mb-6">
-					<DiamondsFour
+					<DiamondsFourIcon
 						size={14}
 						weight="duotone"
 						className="text-amber"

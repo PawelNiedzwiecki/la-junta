@@ -1,4 +1,4 @@
-import { DiamondsFour } from "@phosphor-icons/react/dist/ssr";
+import { DiamondsFourIcon } from "@phosphor-icons/react/dist/ssr";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import SectionHeader from "../ui/SectionHeader";
 
@@ -12,7 +12,7 @@ export default function Community({ dict }: { dict: DictType["comunidad"] }) {
 				<SectionHeader eyebrow={dict.eyebrow} heading={dict.heading} />
 
 				<div className="hairline-amber hairline w-full max-w-75">
-					<DiamondsFour
+					<DiamondsFourIcon
 						size={16}
 						weight="duotone"
 						className="text-amber"

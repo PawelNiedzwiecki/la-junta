@@ -12,7 +12,7 @@
 			"como_funciona": "How it works",
 			"preguntas": "FAQ"
 		},
-		"cta": "May Menu",
+		"cta": "Our Menu",
 		"switchLabel": "ES",
 		"mobileMenuLabel": "Open navigation menu"
 	},
@@ -47,10 +47,10 @@
 		"heading": "The Junta on {eventDate} is already simmering away ",
 		"time": "14:00",
 		"location": "near London Bridge",
-		"reminder": "remember to choose your menu option",
+		"reminder": "remember to see our menu for this month",
 		"descriptionLabel": "What's this month bringing us?",
 		"description": "We start with the citrus embrace of a Pisco Sour, then let ourselves drift between the sea and the garden. Slow fire, corn ground the old country way, herbs from the field, all the way to the sweetest finish Chile has to offer.",
-		"ctaPrimary": "See our May menu",
+		"ctaPrimary": "See our menu",
 		"ctaSecondary": "Coming along?"
 	},
 	"proceso": {

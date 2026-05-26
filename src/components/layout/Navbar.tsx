@@ -1,4 +1,4 @@
-import { List, X } from "@phosphor-icons/react/dist/ssr";
+import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import type { DictType } from "@/app/[lang]/dictionaries";
 import LangSwitcher from "./LangSwitcher";
@@ -8,9 +8,11 @@ type NavbarDict = DictType["navbar"];
 export default function Navbar({
 	dict,
 	lang,
+	menuUrl,
 }: {
 	dict: NavbarDict;
 	lang: string;
+	menuUrl: string | null;
 }) {
 	const navLinks = [
 		{ label: dict.links.nosotros, href: "#historia" },
@@ -83,8 +85,12 @@ export default function Navbar({
 
 						{/* Hamburger / close icons */}
 						<span className="text-cream/80" aria-hidden>
-							<List size={22} weight="bold" className="group-open:hidden" />
-							<X size={22} weight="bold" className="hidden group-open:block" />
+							<ListIcon size={22} weight="bold" className="group-open:hidden" />
+							<XIcon
+								size={22}
+								weight="bold"
+								className="hidden group-open:block"
+							/>
 						</span>
 					</summary>
 
@@ -105,14 +111,16 @@ export default function Navbar({
 								label={dict.switchLabel}
 								className="text-cream/60 hover:text-cream text-[0.75rem] tracking-[0.15em] uppercase transition-colors"
 							/>
-							<a
-								href="/menu/menu_may.pdf"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors"
-							>
-								<span>{dict.cta}</span>
-							</a>
+							{menuUrl && (
+								<a
+									href={menuUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors"
+								>
+									<span>{dict.cta}</span>
+								</a>
+							)}
 						</div>
 					</div>
 				</details>

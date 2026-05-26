@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 	}
 
 	const body = await request.json();
-	const { isoDate } = body;
+	const { isoDate, description, descriptionEn } = body;
 
 	if (typeof isoDate !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) {
 		return NextResponse.json({ error: "Invalid date format (expected YYYY-MM-DD)" }, { status: 400 });
@@ -43,9 +43,17 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: "Invalid date" }, { status: 400 });
 	}
 
+	const payload: Record<string, string> = { isoDate };
+	if (typeof description === "string" && description.trim()) {
+		payload.description = description.trim();
+	}
+	if (typeof descriptionEn === "string" && descriptionEn.trim()) {
+		payload.descriptionEn = descriptionEn.trim();
+	}
+
 	await put(
 		"event/config.json",
-		JSON.stringify({ isoDate }),
+		JSON.stringify(payload),
 		{ access: "public", allowOverwrite: true, contentType: "application/json" },
 	);
 
