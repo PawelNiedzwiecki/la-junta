@@ -58,14 +58,16 @@ export default function Navbar({
 							</span>
 						))}
 					</nav>
-					<a
-						href="/menu/menu_may.pdf"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center justify-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors whitespace-nowrap"
-					>
-						<span>{dict.cta}</span>
-					</a>
+					{menuUrl && (
+						<a
+							href={menuUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex items-center justify-center gap-2 rounded-full bg-amber hover:bg-amber-warm text-white text-[0.72rem] tracking-[0.18em] uppercase font-medium px-5 py-2.5 transition-colors whitespace-nowrap"
+						>
+							<span>{dict.cta}</span>
+						</a>
+					)}
 				</div>
 
 				{/* ── Mobile bar ── */}
