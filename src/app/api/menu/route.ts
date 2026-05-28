@@ -29,11 +29,16 @@ export async function POST(request: NextRequest) {
 	const ts = new Date().toISOString().replace(/[:.]/g, "-");
 	const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
 
-	const [blob, , { blobs: existing }] = await Promise.all([
-		put("menu/current.pdf", file, { access: "public", allowOverwrite: true }),
+	const [historyBlob, { blobs: existing }] = await Promise.all([
 		put(`menu/history/${ts}-${safeName}`, file, { access: "public" }),
 		list({ prefix: "menu/history/" }),
 	]);
+
+	await put(
+		"menu/pointer.json",
+		JSON.stringify({ url: historyBlob.url }),
+		{ access: "public", allowOverwrite: true, contentType: "application/json" },
+	);
 
 	const sorted = existing.sort(
 		(a, b) => new Date(a.uploadedAt).getTime() - new Date(b.uploadedAt).getTime(),
@@ -44,7 +49,7 @@ export async function POST(request: NextRequest) {
 		await Promise.all(overflow.map((b) => del(b.url)));
 	}
 
-	return NextResponse.json({ url: blob.url });
+	return NextResponse.json({ url: historyBlob.url });
 }
 
 export async function GET(request: NextRequest) {

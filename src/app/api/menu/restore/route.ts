@@ -12,22 +12,17 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: "No url provided" }, { status: 400 });
 	}
 
-	// Restrict fetches to Vercel Blob public storage to prevent SSRF
+	// Restrict to Vercel Blob public storage to prevent SSRF
 	const VERCEL_BLOB_RE = /^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//;
 	if (!VERCEL_BLOB_RE.test(url)) {
 		return NextResponse.json({ error: "Invalid URL" }, { status: 400 });
 	}
 
-	const res = await fetch(url);
-	if (!res.ok) {
-		return NextResponse.json({ error: "Failed to fetch blob" }, { status: 502 });
-	}
+	await put(
+		"menu/pointer.json",
+		JSON.stringify({ url }),
+		{ access: "public", allowOverwrite: true, contentType: "application/json" },
+	);
 
-	const blob = await put("menu/current.pdf", res.body!, {
-		access: "public",
-		allowOverwrite: true,
-		contentType: "application/pdf",
-	});
-
-	return NextResponse.json({ url: blob.url });
+	return NextResponse.json({ url });
 }
