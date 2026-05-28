@@ -88,14 +88,14 @@ export default function AdminMenuPage() {
 		}
 	}
 
-	async function refreshHistory() {
+	async function refreshHistory(lang?: "es" | "en") {
 		const res = await fetch("/api/menu", {
 			headers: { "x-admin-password": password },
 		});
 		if (res.ok) {
 			const data = await res.json();
-			setHistoryEs(data.historyEs ?? []);
-			setHistoryEn(data.historyEn ?? []);
+			if (!lang || lang === "es") setHistoryEs(data.historyEs ?? []);
+			if (!lang || lang === "en") setHistoryEn(data.historyEn ?? []);
 		}
 	}
 
@@ -174,7 +174,7 @@ export default function AdminMenuPage() {
 		const { url } = await res.json();
 		if (lang === "es") { setUploadedUrlEs(url); setStatusEs("success"); }
 		else { setUploadedUrlEn(url); setStatusEn("success"); }
-		refreshHistory();
+		refreshHistory(lang);
 	}
 
 	async function restore(lang: "es" | "en", url: string) {
@@ -194,7 +194,7 @@ export default function AdminMenuPage() {
 			const { url: restoredUrl } = await res.json();
 			if (lang === "es") { setUploadedUrlEs(restoredUrl); setStatusEs("success"); }
 			else { setUploadedUrlEn(restoredUrl); setStatusEn("success"); }
-			refreshHistory();
+			refreshHistory(lang);
 		}
 	}
 
@@ -209,8 +209,10 @@ export default function AdminMenuPage() {
 			const a = document.createElement("a");
 			a.href = url;
 			a.download = `bookings-${new Date().toISOString().slice(0, 10)}.csv`;
+			document.body.appendChild(a);
 			a.click();
-			URL.revokeObjectURL(url);
+			document.body.removeChild(a);
+			setTimeout(() => URL.revokeObjectURL(url), 10000);
 		}
 		setDownloading(false);
 	}

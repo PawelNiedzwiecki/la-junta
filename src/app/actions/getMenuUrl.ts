@@ -6,7 +6,7 @@ export async function getMenuUrl(lang: string): Promise<string | null> {
 	const pointer = `menu/pointer-${lang}.json`;
 	try {
 		const { blobs } = await list({ prefix: pointer });
-		const pointerUrl = blobs.find((b) => b.pathname === pointer)?.url;
+		const pointerUrl = blobs[0]?.url;
 		if (!pointerUrl) return null;
 		const res = await fetch(pointerUrl, { cache: "no-store" });
 		if (!res.ok) return null;
