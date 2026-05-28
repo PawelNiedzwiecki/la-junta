@@ -41,7 +41,7 @@ export default async function Home({
 	if (!hasLocale(lang)) notFound();
 	const [dict, menuUrl, eventConfig] = await Promise.all([
 		getDictionary(lang),
-		getMenuUrl(),
+		getMenuUrl(lang),
 		getEventConfig(),
 	]);
 

@@ -13,6 +13,11 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 	}
 
+	const lang = request.nextUrl.searchParams.get("lang");
+	if (lang !== "es" && lang !== "en") {
+		return NextResponse.json({ error: "lang must be es or en" }, { status: 400 });
+	}
+
 	const formData = await request.formData();
 	const file = formData.get("file");
 	if (!(file instanceof File)) {
@@ -28,14 +33,15 @@ export async function POST(request: NextRequest) {
 
 	const ts = new Date().toISOString().replace(/[:.]/g, "-");
 	const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+	const historyPrefix = `menu/history-${lang}/`;
 
 	const [historyBlob, { blobs: existing }] = await Promise.all([
-		put(`menu/history/${ts}-${safeName}`, file, { access: "public" }),
-		list({ prefix: "menu/history/" }),
+		put(`${historyPrefix}${ts}-${safeName}`, file, { access: "public" }),
+		list({ prefix: historyPrefix }),
 	]);
 
 	await put(
-		"menu/pointer.json",
+		`menu/pointer-${lang}.json`,
 		JSON.stringify({ url: historyBlob.url }),
 		{ access: "public", allowOverwrite: true, contentType: "application/json" },
 	);
@@ -43,7 +49,6 @@ export async function POST(request: NextRequest) {
 	const sorted = existing.sort(
 		(a, b) => new Date(a.uploadedAt).getTime() - new Date(b.uploadedAt).getTime(),
 	);
-	// sorted is pre-new-upload; new entry pushes count to existing.length + 1
 	const overflow = sorted.slice(0, Math.max(0, sorted.length + 1 - HISTORY_LIMIT));
 	if (overflow.length > 0) {
 		await Promise.all(overflow.map((b) => del(b.url)));
@@ -57,14 +62,15 @@ export async function GET(request: NextRequest) {
 		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 	}
 
-	const { blobs } = await list({ prefix: "menu/history/" });
-	const history = blobs
-		.sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
-		.map((b) => ({
-			url: b.url,
-			pathname: b.pathname,
-			uploadedAt: b.uploadedAt,
-		}));
+	const [{ blobs: blobsEs }, { blobs: blobsEn }] = await Promise.all([
+		list({ prefix: "menu/history-es/" }),
+		list({ prefix: "menu/history-en/" }),
+	]);
 
-	return NextResponse.json({ history });
+	const sort = (blobs: typeof blobsEs) =>
+		blobs
+			.sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
+			.map((b) => ({ url: b.url, pathname: b.pathname, uploadedAt: b.uploadedAt }));
+
+	return NextResponse.json({ historyEs: sort(blobsEs), historyEn: sort(blobsEn) });
 }

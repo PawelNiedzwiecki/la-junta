@@ -2,10 +2,11 @@
 
 import { list } from "@vercel/blob";
 
-export async function getMenuUrl(): Promise<string | null> {
+export async function getMenuUrl(lang: string): Promise<string | null> {
+	const pointer = `menu/pointer-${lang}.json`;
 	try {
-		const { blobs } = await list({ prefix: "menu/pointer.json" });
-		const pointerUrl = blobs.find((b) => b.pathname === "menu/pointer.json")?.url;
+		const { blobs } = await list({ prefix: pointer });
+		const pointerUrl = blobs.find((b) => b.pathname === pointer)?.url;
 		if (!pointerUrl) return null;
 		const res = await fetch(pointerUrl, { cache: "no-store" });
 		if (!res.ok) return null;

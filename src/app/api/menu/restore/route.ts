@@ -7,9 +7,12 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 	}
 
-	const { url } = await request.json();
+	const { url, lang } = await request.json();
 	if (!url || typeof url !== "string") {
 		return NextResponse.json({ error: "No url provided" }, { status: 400 });
+	}
+	if (lang !== "es" && lang !== "en") {
+		return NextResponse.json({ error: "lang must be es or en" }, { status: 400 });
 	}
 
 	// Restrict to Vercel Blob public storage to prevent SSRF
@@ -19,7 +22,7 @@ export async function POST(request: NextRequest) {
 	}
 
 	await put(
-		"menu/pointer.json",
+		`menu/pointer-${lang}.json`,
 		JSON.stringify({ url }),
 		{ access: "public", allowOverwrite: true, contentType: "application/json" },
 	);
